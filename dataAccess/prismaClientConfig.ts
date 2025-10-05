@@ -13,7 +13,7 @@ if (!dbName) {
 
 const dbPath = path.join(rootPath, `${dbName}.db`);
 
-const prisma = new PrismaClient({
+const prisma: PrismaClient = new PrismaClient({
   datasources: {
     db: {
       url: `file:${dbPath}`,
