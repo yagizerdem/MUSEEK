@@ -1,0 +1,1 @@
+how to run migratons -->  npm run build &&  node  .\dist\createMigration.js

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && copyfiles -u 0 .env dist",
+    "build": "tsc && copyfiles -u 0 .env dist && copyfiles -u 0 prisma/schema.prisma dist",
     "start": "electron ./dist/app.js",
     "watch": "tsc --watch",
     "dev": "npm-run-all --parallel watch start-electron",

@@ -11,89 +11,129 @@ generator client {
 
 
 
-model Track {
-  id                       Int           @id
-  readable                 Boolean
-  title                    String
-  title_short              String
-  title_version            String
-  isrc                     String
-  link                     String
-  share                    String
-  duration                 Int
-  track_position           Int
-  disk_number              Int
-  rank                     Int
-  release_date             DateTime
-  explicit_lyrics          Boolean
-  explicit_content_lyrics  Int
-  explicit_content_cover   Int
-  preview                  String
-  bpm                      Float
-  gain                     Float
-  available_countries      String[]
-  md5_image                String
-  track_token              String
-  type                     String
+model Artist {
+  id              Int           @id
+  name            String
+  link            String?
+  share           String?
+  picture         String?
+  picture_small   String?
+  picture_medium  String?
+  picture_big     String?
+  picture_xl      String?
+  radio           Boolean?      @default(false)
+  tracklist       String?
+  type            String?
 
-  artistId   Int
-  artist     Artist       @relation(fields: [artistId], references: [id])
-
-  albumId    Int
-  album      Album        @relation(fields: [albumId], references: [id])
-
-  contributors Contributor[]
+  albums          Album[]
+  tracks          Track[]
+  contributors    Contributor[]
 }
 
 model Contributor {
-  id             Int      @id
-  name           String
-  link           String
-  share          String
-  picture        String
-  picture_small  String
-  picture_medium String
-  picture_big    String
-  picture_xl     String
-  radio          Boolean
-  tracklist      String
-  type           String
-  role           String
+  id              Int           @id
+  name            String
+  link            String?
+  share           String?
+  picture         String?
+  picture_small   String?
+  picture_medium  String?
+  picture_big     String?
+  picture_xl      String?
+  radio           Boolean?      @default(false)
+  tracklist       String?
+  type            String?
+  role            String?
 
-  trackId Int
-  tracks   Track @relation(fields: [trackId], references: [id])
+  // Relations
+  artistId        Int?
+  artist          Artist?       @relation(fields: [artistId], references: [id])
+
+  albumId         Int?
+  album           Album?        @relation(fields: [albumId], references: [id])
+
+  trackId         Int?
+  track           Track?        @relation(fields: [trackId], references: [id])
 }
 
-model Artist {
-  id             Int      @id
-  name           String
-  link           String
-  share          String
-  picture        String
-  picture_small  String
-  picture_medium String
-  picture_big    String
-  picture_xl     String
-  radio          Boolean
-  tracklist      String
-  type           String
+model Genre {
+  id              Int           @id
+  name            String
+  picture         String?
+  picture_small   String?
+  picture_medium  String?
+  picture_big     String?
+  picture_xl      String?
 
-  tracks Track[]
+  albums          Album[]       @relation("AlbumGenres")
 }
 
 model Album {
-  id          Int      @id
-  title       String
-  link        String
-  cover       String
-  cover_small String
-  cover_medium String
-  cover_big   String
-  cover_xl    String
-  md5_image   String
-  release_date DateTime
-  tracklist   String
-  type        String
+  id                      Int           @id
+  title                   String
+  upc                     String?
+  link                    String?
+  share                   String?
+  cover                   String?
+  cover_small             String?
+  cover_medium            String?
+  cover_big               String?
+  cover_xl                String?
+  md5_image               String?
+  genre_id                Int?
+  label                   String?
+  nb_tracks               Int?
+  duration                Int?
+  fans                    Int?
+  release_date            String?
+  record_type             String?
+  available               Boolean?      @default(true)
+  tracklist               String?
+  explicit_lyrics         Boolean?      @default(false)
+  explicit_content_lyrics Int?          @default(0)
+  explicit_content_cover  Int?          @default(0)
+  type                    String?
 
-  tracks Track[]
+  // Relations
+  artistId                Int?
+  artist                  Artist?       @relation(fields: [artistId], references: [id])
+
+  genres                  Genre[]       @relation("AlbumGenres")
+  contributors            Contributor[]
+  tracks                  Track[]
+}
+
+model Track {
+  id                      Int           @id
+  readable                Boolean?      @default(true)
+  title                   String
+  title_short             String?
+  title_version           String?
+  isrc                    String?
+  link                    String?
+  share                   String?
+  duration                Int?
+  track_position          Int?
+  disk_number             Int?
+  rank                    Int?
+  release_date            String?
+  explicit_lyrics         Boolean?      @default(false)
+  explicit_content_lyrics Int?          @default(0)
+  explicit_content_cover  Int?          @default(0)
+  preview                 String?
+  bpm                     Float?        @default(0)
+  gain                    Float?        @default(0)
+  md5_image               String?
+  track_token             String?
+  type                    String?
+  available_countries     Json?
+
+  // Relations
+  artistId                Int?
+  artist                  Artist?       @relation(fields: [artistId], references: [id])
+
+  albumId                 Int?
+  album                   Album?        @relation(fields: [albumId], references: [id])
+
+  contributors            Contributor[]
 }
