@@ -4,11 +4,11 @@ import { sleep } from "./auxiliary";
 async function requestWithRetry<T>(
   requestFn: () => Promise<AxiosResponse<T>>,
   maxRetries: number = 3,
-  delayMs: number = 1000
+  delayMs?: number
 ): Promise<AxiosResponse<T>> {
   let lastError: unknown;
 
-  let knockOut = 300;
+  let knockOut = delayMs || 300;
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {

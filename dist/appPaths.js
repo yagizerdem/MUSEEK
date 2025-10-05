@@ -46,5 +46,4 @@ function initilizeFiles() {
     createRootPath();
     createDb();
 }
-initilizeFiles();
 //# sourceMappingURL=appPaths.js.map
