@@ -43,6 +43,7 @@ function createDb() {
     fs.writeFileSync(dbPath, "");
   }
   process.env.DB_PATH = dbPath;
+  process.env.DATABASE_URL = `file:${dbPath}`;
 }
 
 function initilizeFiles() {

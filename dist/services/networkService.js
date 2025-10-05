@@ -215,5 +215,4 @@ function GetTrackById(id) {
         });
     });
 }
-GetTrackById(3135556).then(function (data) { return console.log(data); });
 //# sourceMappingURL=networkService.js.map

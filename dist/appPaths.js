@@ -40,6 +40,7 @@ function createDb() {
         fs_1.default.writeFileSync(dbPath, "");
     }
     process.env.DB_PATH = dbPath;
+    process.env.DATABASE_URL = "file:".concat(dbPath);
 }
 function initilizeFiles() {
     LoadEnv();

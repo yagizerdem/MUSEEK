@@ -1,0 +1,99 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")   
+}
+
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+
+
+model Track {
+  id                       Int           @id
+  readable                 Boolean
+  title                    String
+  title_short              String
+  title_version            String
+  isrc                     String
+  link                     String
+  share                    String
+  duration                 Int
+  track_position           Int
+  disk_number              Int
+  rank                     Int
+  release_date             DateTime
+  explicit_lyrics          Boolean
+  explicit_content_lyrics  Int
+  explicit_content_cover   Int
+  preview                  String
+  bpm                      Float
+  gain                     Float
+  available_countries      String[]
+  md5_image                String
+  track_token              String
+  type                     String
+
+  artistId   Int
+  artist     Artist       @relation(fields: [artistId], references: [id])
+
+  albumId    Int
+  album      Album        @relation(fields: [albumId], references: [id])
+
+  contributors Contributor[]
+}
+
+model Contributor {
+  id             Int      @id
+  name           String
+  link           String
+  share          String
+  picture        String
+  picture_small  String
+  picture_medium String
+  picture_big    String
+  picture_xl     String
+  radio          Boolean
+  tracklist      String
+  type           String
+  role           String
+
+  trackId Int
+  tracks   Track @relation(fields: [trackId], references: [id])
+}
+
+model Artist {
+  id             Int      @id
+  name           String
+  link           String
+  share          String
+  picture        String
+  picture_small  String
+  picture_medium String
+  picture_big    String
+  picture_xl     String
+  radio          Boolean
+  tracklist      String
+  type           String
+
+  tracks Track[]
+}
+
+model Album {
+  id          Int      @id
+  title       String
+  link        String
+  cover       String
+  cover_small String
+  cover_medium String
+  cover_big   String
+  cover_xl    String
+  md5_image   String
+  release_date DateTime
+  tracklist   String
+  type        String
+
+  tracks Track[]
+}
