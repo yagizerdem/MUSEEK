@@ -99,4 +99,19 @@ async function GetTrackById(id) {
         return null;
     }
 }
+async function SearchTracks({ query, strict = true, // default exact match search
+offset = 0, // default cursor position 0
+limit = 10, // default page size
+ }) {
+    try {
+        const response = await (0, httpUtils_1.requestWithRetry)(() => axios_1.deezerApi.get(`/search/track?q=${encodeURIComponent(query)}&strict=${strict}&index=${offset}&limit=${limit}`), 3, 500);
+        const payload = response.data;
+        return payload;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+SearchTracks({ query: "test", strict: true, offset: 0, limit: 3 }).then((data) => console.log(data));
 //# sourceMappingURL=networkService.js.map
