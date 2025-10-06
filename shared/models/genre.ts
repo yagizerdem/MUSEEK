@@ -8,4 +8,4 @@ interface Genre {
   picture_xl: string;
 }
 
-export { Genre };
+export type { Genre };

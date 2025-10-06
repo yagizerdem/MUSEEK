@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Main = void 0;
+const path_1 = __importDefault(require("path"));
 class Main {
     static onWindowAllClosed() {
         if (process.platform !== "darwin") {
@@ -12,7 +16,15 @@ class Main {
         Main.mainWindow = null;
     }
     static onReady() {
-        Main.mainWindow = new Main.BrowserWindow({ width: 800, height: 600 });
+        Main.mainWindow = new Main.BrowserWindow({
+            width: 800,
+            height: 600,
+            webPreferences: {
+                preload: path_1.default.join(__dirname, "preload.js"),
+                contextIsolation: true,
+                nodeIntegration: false,
+            },
+        });
         if (Main.application.isPackaged) {
             Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
         }

@@ -1,4 +1,4 @@
-interface Artist {
+interface Contributor {
   id: number;
   name: string;
   link: string;
@@ -8,11 +8,10 @@ interface Artist {
   picture_medium: string;
   picture_big: string;
   picture_xl: string;
-  nb_album: number;
-  nb_fan: number;
   radio: boolean;
   tracklist: string;
   type: string;
+  role: string;
 }
 
-export { Artist };
+export type { Contributor };

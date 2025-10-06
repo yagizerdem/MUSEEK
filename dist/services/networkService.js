@@ -8,6 +8,8 @@ exports.GetPlaylist = GetPlaylist;
 exports.GetPodcastById = GetPodcastById;
 exports.GetRadioById = GetRadioById;
 exports.GetTrackById = GetTrackById;
+exports.SearchTracks = SearchTracks;
+const ServiceResponse_1 = require("../shared/response/ServiceResponse");
 const axios_1 = require("../utils/axios");
 const httpUtils_1 = require("../utils/httpUtils");
 async function GetArtistById(id) {
@@ -106,12 +108,21 @@ limit = 10, // default page size
     try {
         const response = await (0, httpUtils_1.requestWithRetry)(() => axios_1.deezerApi.get(`/search/track?q=${encodeURIComponent(query)}&strict=${strict}&index=${offset}&limit=${limit}`), 3, 500);
         const payload = response.data;
-        return payload;
+        return ServiceResponse_1.ServiceResponse.Success(payload, "Tracks retrieved successfully");
     }
     catch (error) {
-        console.log(error);
-        return null;
+        return ServiceResponse_1.ServiceResponse.Fail("Failed to search tracks", error);
     }
 }
-SearchTracks({ query: "test", strict: true, offset: 0, limit: 3 }).then((data) => console.log(data));
+exports.default = {
+    GetArtistById,
+    GetAlbumById,
+    GetEpisodeById,
+    GetGenreById,
+    GetPlaylist,
+    GetPodcastById,
+    GetRadioById,
+    GetTrackById,
+    SearchTracks,
+};
 //# sourceMappingURL=networkService.js.map

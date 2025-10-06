@@ -1,3 +1,6 @@
+import { Track } from "../shared/models/track";
+import { DeezerListResponse } from "../shared/response/DeezerListResponse";
+import { ServiceResponse } from "../shared/response/ServiceResponse";
 import { deezerApi } from "../utils/axios";
 import { requestWithRetry } from "../utils/httpUtils";
 
@@ -141,7 +144,7 @@ async function SearchTracks({
   strict?: boolean;
   offset?: number;
   limit?: number;
-}): Promise<any> {
+}): Promise<ServiceResponse<DeezerListResponse<Track>>> {
   try {
     const response = await requestWithRetry(
       () =>
@@ -155,16 +158,14 @@ async function SearchTracks({
     );
     const payload = response.data;
 
-    return payload;
+    return ServiceResponse.Success<DeezerListResponse<Track>>(
+      payload,
+      "Tracks retrieved successfully"
+    );
   } catch (error) {
-    console.log(error);
-    return null;
+    return ServiceResponse.Fail("Failed to search tracks", error);
   }
 }
-
-SearchTracks({ query: "test", strict: true, offset: 0, limit: 3 }).then(
-  (data) => console.log(data)
-);
 
 export {
   GetArtistById,
@@ -175,4 +176,17 @@ export {
   GetPodcastById,
   GetRadioById,
   GetTrackById,
+  SearchTracks,
+};
+
+export default {
+  GetArtistById,
+  GetAlbumById,
+  GetEpisodeById,
+  GetGenreById,
+  GetPlaylist,
+  GetPodcastById,
+  GetRadioById,
+  GetTrackById,
+  SearchTracks,
 };

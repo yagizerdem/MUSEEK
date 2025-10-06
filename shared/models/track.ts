@@ -31,4 +31,4 @@ interface Track {
   type: string;
 }
 
-export { Track };
+export type { Track };

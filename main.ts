@@ -1,4 +1,5 @@
 import { BrowserWindow } from "electron";
+import path from "path";
 
 class Main {
   static mainWindow: Electron.BrowserWindow;
@@ -16,7 +17,15 @@ class Main {
   }
 
   private static onReady() {
-    Main.mainWindow = new Main.BrowserWindow({ width: 800, height: 600 });
+    Main.mainWindow = new Main.BrowserWindow({
+      width: 800,
+      height: 600,
+      webPreferences: {
+        preload: path.join(__dirname, "preload.js"),
+        contextIsolation: true,
+        nodeIntegration: false,
+      },
+    });
     if (Main.application.isPackaged) {
       Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
     } else {

@@ -34,4 +34,4 @@ interface Album {
   tracks?: Track[];
 }
 
-export { Album };
+export type { Album };

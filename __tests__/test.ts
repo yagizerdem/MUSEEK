@@ -1,7 +1,7 @@
 import "../envLoader";
 
 import { prisma } from "../dataAccess/prismaClientConfig";
-import { Album } from "../models/album";
+import { Album } from "../shared/models/album";
 
 (async () => {
   await prisma.$connect();

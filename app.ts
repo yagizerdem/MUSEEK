@@ -1,10 +1,10 @@
 import "./envLoader"; // load .env data is requred at top level to keep app code not break
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { Main } from "./main";
 import { initilizeFiles } from "./appPaths";
-import { prisma } from "./dataAccess/prismaClientConfig";
 import { execSync } from "child_process";
-import path from "path";
+import networkController from "./controllers/networkController";
+import type { SearchTracksDTO } from "./shared/DTO/SearchTracksDTO";
 
 Main.main(app, BrowserWindow);
 
@@ -29,4 +29,15 @@ app.whenReady().then(async () => {
   }
 
   await initilizeFiles();
+});
+
+// network controller ipc handlers
+app.whenReady().then(() => {
+  ipcMain.handle("networkController:foo", networkController.foo);
+  ipcMain.handle(
+    "networkController:SearchTracks",
+    async (_event, params: SearchTracksDTO) => {
+      return await networkController.SearchTracks(params);
+    }
+  );
 });

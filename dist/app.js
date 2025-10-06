@@ -1,10 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./envLoader"); // load .env data is requred at top level to keep app code not break
 const electron_1 = require("electron");
 const main_1 = require("./main");
 const appPaths_1 = require("./appPaths");
 const child_process_1 = require("child_process");
+const networkController_1 = __importDefault(require("./controllers/networkController"));
 main_1.Main.main(electron_1.app, electron_1.BrowserWindow);
 electron_1.app.whenReady().then(async () => {
     try {
@@ -22,5 +26,12 @@ electron_1.app.whenReady().then(async () => {
         console.error("Migration failed:", err);
     }
     await (0, appPaths_1.initilizeFiles)();
+});
+// network controller ipc handlers
+electron_1.app.whenReady().then(() => {
+    electron_1.ipcMain.handle("networkController:foo", networkController_1.default.foo);
+    electron_1.ipcMain.handle("networkController:SearchTracks", async (_event, params) => {
+        return await networkController_1.default.SearchTracks(params);
+    });
 });
 //# sourceMappingURL=app.js.map
