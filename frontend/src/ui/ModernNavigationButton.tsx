@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface ModernNavigationButtonProps {
@@ -7,6 +8,7 @@ interface ModernNavigationButtonProps {
   onClick?: () => void;
   onMouseUp?: () => void;
   onMouseDown?: () => void;
+  compactThreshold?: number;
 }
 
 export function ModernNavigationButton({
@@ -16,9 +18,34 @@ export function ModernNavigationButton({
   onClick,
   onMouseDown,
   onMouseUp,
+  compactThreshold,
 }: ModernNavigationButtonProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [isTight, setIsTight] = useState(false);
+
+  useEffect(() => {
+    const button = buttonRef.current;
+    if (!button) return;
+    const observer = new ResizeObserver(() => {
+      updateWidth();
+    });
+
+    function updateWidth() {
+      if (compactThreshold) {
+        if (buttonRef.current) {
+          const width = buttonRef.current.offsetWidth;
+          setIsTight(width < compactThreshold);
+        }
+      }
+    }
+    observer.observe(button);
+
+    return () => observer.disconnect();
+  }, [compactThreshold, buttonRef]);
+
   return (
     <button
+      ref={buttonRef}
       onClick={onClick}
       onMouseUp={onMouseUp}
       onMouseDown={onMouseDown}
@@ -42,7 +69,7 @@ export function ModernNavigationButton({
       )}
     >
       {icon && <span className="text-lg">{icon}</span>}
-      {label && <span>{label}</span>}
+      {!isTight && label && <span>{label}</span>}
     </button>
   );
 }

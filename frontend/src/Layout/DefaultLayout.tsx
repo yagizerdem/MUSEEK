@@ -2,6 +2,8 @@ import { HorizontalSplitPane } from "../ui/HorizontalSplitPane";
 import { ModernNavigationButton } from "../ui/ModernNavigationButton";
 import { router } from "../router";
 import { useState } from "react";
+import { HomeIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 
 const activePageEnum = Object.freeze({
   HOME: "HOME",
@@ -42,6 +44,8 @@ function DefaultLayout({ children }: { children: React.ReactNode }) {
                   ? "bg-[var(--clr-info-a0)]"
                   : ""
               }`}
+              compactThreshold={150}
+              icon={<HomeIcon />}
             />
             <ModernNavigationButton
               label="Search"
@@ -51,6 +55,8 @@ function DefaultLayout({ children }: { children: React.ReactNode }) {
                   ? "bg-[var(--clr-info-a0)]"
                   : ""
               }`}
+              compactThreshold={150}
+              icon={<SearchIcon />}
             />
           </div>
         }
