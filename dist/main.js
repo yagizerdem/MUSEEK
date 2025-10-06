@@ -13,7 +13,12 @@ class Main {
     }
     static onReady() {
         Main.mainWindow = new Main.BrowserWindow({ width: 800, height: 600 });
-        Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
+        if (Main.application.isPackaged) {
+            Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
+        }
+        else {
+            Main.mainWindow.loadURL("http://localhost:5173/");
+        }
         Main.mainWindow.on("closed", Main.onClose);
     }
     static main(app, browserWindow) {
