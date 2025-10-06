@@ -1,7 +1,16 @@
 import { HorizontalSplitPane } from "../ui/HorizontalSplitPane";
 import { ModernNavigationButton } from "../ui/ModernNavigationButton";
+import { router } from "../router";
 
 function DefaultLayout({ children }: { children: React.ReactNode }) {
+  function goToHome() {
+    router.navigate("/home");
+  }
+
+  function goToSearch() {
+    router.navigate("/search");
+  }
+
   return (
     <div className="w-screen h-screen">
       <HorizontalSplitPane
@@ -15,8 +24,8 @@ function DefaultLayout({ children }: { children: React.ReactNode }) {
           p-3 
           gap-4`}
           >
-            <ModernNavigationButton label="Home" />
-            <ModernNavigationButton label="Search" />
+            <ModernNavigationButton label="Home" onMouseUp={goToHome} />
+            <ModernNavigationButton label="Search" onMouseUp={goToSearch} />
           </div>
         }
         splitterClassName="bg-[var(--clr-surface-a30)] w-1"

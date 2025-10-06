@@ -1,5 +1,7 @@
 import { Fragment, useEffect } from "react";
 import { DefaultLayout } from "./Layout/DefaultLayout";
+import { RouterProvider } from "react-router";
+import { router } from "./router";
 
 function App() {
   useEffect(() => {
@@ -14,9 +16,7 @@ function App() {
   return (
     <Fragment>
       <DefaultLayout>
-        <span className="w-full h-full flex-1 flex flex-col bg-[var(--clr-surface-a0)]">
-          ajflajf
-        </span>
+        <RouterProvider router={router} />
       </DefaultLayout>
     </Fragment>
   );
