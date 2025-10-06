@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 import { Fragment } from "react/jsx-runtime";
+import { twMerge } from "tailwind-merge";
 
 interface HorizontalSplitPaneProps {
-  children?: React.ReactNode;
+  leftChildren: React.ReactNode;
+  rightChildren: React.ReactNode;
   leftPanelInitialSize?: number;
   leftPanelMinSize?: number;
   leftPanelMaxSize?: number;
+  splitterClassName?: string;
 }
 
 function HorizontalSplitPane({
-  children,
+  leftChildren,
+  rightChildren,
   leftPanelInitialSize,
   leftPanelMinSize,
   leftPanelMaxSize,
+  splitterClassName,
 }: HorizontalSplitPaneProps) {
   const [leftPanelSize, setLeftPanelSize] = useState<number>(
     leftPanelInitialSize || 200
@@ -65,18 +70,23 @@ function HorizontalSplitPane({
 
   return (
     <Fragment>
-      <div className="w-full h-full flex flex-row bg-red-400">
+      <div className="w-full h-full flex flex-row ">
         <div
           className="flex flex-col"
           style={{
             width: `${leftPanelSize}px`,
           }}
-        ></div>
+        >
+          {leftChildren}
+        </div>
         <div
-          className="w-1 h-full bg-gray-600 cursor-e-resize"
+          className={twMerge(
+            "w-1 h-full bg-[var(--clr-surface-a20)] cursor-e-resize",
+            splitterClassName
+          )}
           onMouseDown={() => setIsDragging(true)}
         ></div>
-        <div className="flex-1 bg-blue-400">{children}</div>
+        <div className="flex-1 ">{rightChildren}</div>
       </div>
     </Fragment>
   );

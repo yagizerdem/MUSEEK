@@ -1,0 +1,116 @@
+.dark-default {
+  /** Base colors */
+  --clr-dark-a0: #000000;
+  --clr-light-a0: #ffffff;
+
+  /** Theme primary colors */
+  --clr-text-primary: #ffffff;
+  --clr-primary-secondary: #bbbbbb;
+
+  /** Theme surface colors */
+  --clr-surface-a0: #121212;
+  --clr-surface-a10: #282828;
+  --clr-surface-a20: #3f3f3f;
+  --clr-surface-a30: #575757;
+  --clr-surface-a40: #717171;
+  --clr-surface-a50: #8b8b8b;
+
+  /** Success colors */
+  --clr-success-a0: #22946e;
+  --clr-success-a10: #47d5a6;
+  --clr-success-a20: #9ae8ce;
+
+  /** Warning colors */
+  --clr-warning-a0: #a87a2a;
+  --clr-warning-a10: #d7ac61;
+  --clr-warning-a20: #ecd7b2;
+
+  /** Danger colors */
+  --clr-danger-a0: #9c2121;
+  --clr-danger-a10: #d94a4a;
+  --clr-danger-a20: #eb9e9e;
+
+  /** Info colors */
+  --clr-info-a0: #21498a;
+  --clr-info-a10: #4077d1;
+  --clr-info-a20: #92b2e5;
+}
+
+.dark-sea-tonal {
+  /** Base colors */
+  --clr-dark-a0: #000000;
+  --clr-light-a0: #ffffff;
+
+  /** Theme primary colors */
+  --clr-text-primary: #e9ecf1; /* Hafif maviye çalan beyaz */
+  --clr-primary-secondary: #aab3c2; /* Soğuk gri */
+
+  /** Theme surface colors (dark-default’un mavimsi versiyonu) */
+  --clr-surface-a0: #11161b; /* #121212 → soğuk alt ton eklendi */
+  --clr-surface-a10: #222931; /* #282828 → blue-gray tonu */
+  --clr-surface-a20: #353e48; /* #3f3f3f → mavi-gri karışımı */
+  --clr-surface-a30: #4a5561; /* #575757 → hafif çelik tonu */
+  --clr-surface-a40: #62707f; /* #717171 → daha soğuk */
+  --clr-surface-a50: #7b8a9b; /* #8b8b8b → steel gray */
+
+  /** Success colors (aynı yeşil ton, ama azıcık mavi etkili) */
+  --clr-success-a0: #1e8a7a; /* daha serin yeşil */
+  --clr-success-a10: #45c5a3;
+  --clr-success-a20: #8fe2c9;
+
+  /** Warning colors (hafif pastel amber) */
+  --clr-warning-a0: #a57b2d;
+  --clr-warning-a10: #d2aa5b;
+  --clr-warning-a20: #e8d2a6;
+
+  /** Danger colors (bir tık desatüre, soğuk kırmızı) */
+  --clr-danger-a0: #8f2a2a;
+  --clr-danger-a10: #cc5050;
+  --clr-danger-a20: #e59c9c;
+
+  /** Info colors (deniz mavisi ağırlıklı) */
+  --clr-info-a0: #1e5c8f;
+  --clr-info-a10: #3f7fb3;
+  --clr-info-a20: #8bb6d9;
+}
+
+.dark-sunlight-tonal {
+  /** Base colors */
+  --clr-dark-a0: #000000;
+  --clr-light-a0: #ffffff;
+
+  /** Theme primary colors */
+  --clr-text-primary: #f3efe8; /* sıcak beyaz */
+  --clr-primary-secondary: #c1b8a6; /* sıcak gri-bej */
+
+  /** Theme surface colors (warm gray tonları) */
+  --clr-surface-a0: #141210; /* #121212 → sıcak alt ton eklendi */
+  --clr-surface-a10: #27231f; /* #282828 → kahverengimsi gri */
+  --clr-surface-a20: #3b352f; /* #3f3f3f → sıcak koyu gri */
+  --clr-surface-a30: #514941; /* #575757 → bronze gray */
+  --clr-surface-a40: #696055; /* #717171 → toprak alt ton */
+  --clr-surface-a50: #82786a; /* #8b8b8b → sıcak taş rengi */
+
+  /** Success colors (yeşile hafif sarı tonu verildi) */
+  --clr-success-a0: #3a9a63; /* sıcak zeytin yeşili */
+  --clr-success-a10: #60c286;
+  --clr-success-a20: #a4e2bb;
+
+  /** Warning colors (güneş amber tonları) */
+  --clr-warning-a0: #c58c2b; /* kehribar altın */
+  --clr-warning-a10: #e1b15a;
+  --clr-warning-a20: #f0d59b;
+
+  /** Danger colors (kırmızıya sıcaklık verildi, hafif pas tonlu) */
+  --clr-danger-a0: #a33a2a;
+  --clr-danger-a10: #cf6554;
+  --clr-danger-a20: #e8a79b;
+
+  /** Info colors (soğuk değil, hafif turkuaz karışık sıcak mavi) */
+  --clr-info-a0: #3a7092;
+  --clr-info-a10: #5e8eae;
+  --clr-info-a20: #a3c1d4;
+}
+
+.light-default {
+}
