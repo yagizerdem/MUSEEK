@@ -14,6 +14,8 @@ app.whenReady().then(async () => {
       throw new Error("DATABASE_URL environment variable is not defined.");
     }
 
+    initilizeFiles();
+
     console.log("Applying Prisma migrations...");
     execSync("npx prisma migrate deploy", {
       stdio: "inherit",

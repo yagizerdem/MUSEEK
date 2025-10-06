@@ -8,8 +8,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
-
 model Artist {
   id              Int           @id
   name            String

@@ -31,7 +31,7 @@ const prismaClientConfig_1 = require("../dataAccess/prismaClientConfig");
         type: "album",
     };
     await prismaClientConfig_1.prisma.album.create({
-        data: album,
+        data: Object.assign({}, album),
     });
 })();
 //# sourceMappingURL=test.js.map

@@ -11,6 +11,7 @@ electron_1.app.whenReady().then(async () => {
         if (!process.env.DATABASE_URL) {
             throw new Error("DATABASE_URL environment variable is not defined.");
         }
+        (0, appPaths_1.initilizeFiles)();
         console.log("Applying Prisma migrations...");
         (0, child_process_1.execSync)("npx prisma migrate deploy", {
             stdio: "inherit",
