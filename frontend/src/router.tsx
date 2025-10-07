@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { HomePage } from "./Pages/HomePage";
-import { SearchPage } from "./Pages/SearchPage";
+import { SearchTracksPage } from "./Pages/SearchTracksPage";
+import { SearchTracksProvider } from "./context/SearchTracksContext";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +13,12 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/search",
-    element: <SearchPage />,
+    path: "/search-tracks",
+    element: (
+      <SearchTracksProvider>
+        <SearchTracksPage />
+      </SearchTracksProvider>
+    ),
   },
 ]);
 

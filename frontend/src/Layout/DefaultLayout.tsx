@@ -18,8 +18,8 @@ function DefaultLayout({ children }: { children: React.ReactNode }) {
     setActivePage(activePageEnum.HOME);
   }
 
-  function goToSearch() {
-    router.navigate("/search");
+  function goToSearchTracks() {
+    router.navigate("/search-tracks");
     setActivePage(activePageEnum.SEARCH);
   }
 
@@ -49,7 +49,7 @@ function DefaultLayout({ children }: { children: React.ReactNode }) {
             />
             <ModernNavigationButton
               label="Search"
-              onMouseUp={goToSearch}
+              onMouseUp={goToSearchTracks}
               className={`${
                 activePage === activePageEnum.SEARCH
                   ? "bg-[var(--clr-info-a0)]"
