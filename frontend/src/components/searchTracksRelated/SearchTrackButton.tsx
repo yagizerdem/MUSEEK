@@ -5,7 +5,8 @@ import { useSearchTracks } from "../../context/SearchTracksContext";
 import { ModernButton } from "../../ui/ModernButton";
 
 function SearchTrackButton() {
-  const { query, tracks, pageSize, setTracks } = useSearchTracks();
+  const { query, tracks, pageSize, setTracks, setIsLoading } =
+    useSearchTracks();
 
   function handleSearch(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
@@ -16,6 +17,8 @@ function SearchTrackButton() {
 
   async function fetchTracks() {
     try {
+      setIsLoading(true);
+
       //   const apiResponse: ApiResponse<DeezerListResponse<Track>> =
       //     await window.network.SearchTracks({
       //       query,
@@ -23,7 +26,7 @@ function SearchTrackButton() {
       //       limit: pageSize,
       //     });
 
-      console.log(apiResponse);
+      //   console.log(apiResponse);
     } catch (error) {
       console.error("Error fetching tracks:", error);
     }
