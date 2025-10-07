@@ -1,6 +1,5 @@
 import { twMerge } from "tailwind-merge";
 import { X } from "lucide-react";
-import { useRef } from "react";
 
 interface ModerTextInputProps {
   text: string;
@@ -8,6 +7,7 @@ interface ModerTextInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onClear?: () => void;
 }
 
 function ModernTextInput({
@@ -16,69 +16,65 @@ function ModernTextInput({
   onChange,
   className,
   onFocus,
+  onClear,
 }: ModerTextInputProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
-
   function clearInput(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
     event.stopPropagation();
-    if (inputRef.current) {
-      inputRef.current.value = "";
-    }
+    onClear?.();
   }
 
   return (
     <div
-      className={`
-    w-fit
-    h-fit
-    flex flex-1 flex-row
+      className={twMerge(
+        `
+    flex
+    flex-row
+    items-center
     relative
     font-bold
-    `}
+    w-full
+    h-14  /* sabit bir yükseklik belirle */
+    bg-[var(--clr-surface-a10)]
+    rounded-md
+    border-4
+    border-transparent
+    focus-within:border-[var(--clr-primary-secondary)]
+    transition-colors
+    duration-500
+  `,
+        className
+      )}
     >
       <input
         type="text"
         placeholder={placeholder}
         onChange={onChange}
         onFocus={onFocus}
-        ref={inputRef}
         value={text}
-        className={twMerge(
-          `
-    relative
-    w-full 
-    h-full 
-    bg-[var(--clr-surface-a10)]
-    text-[var(--clr-text-primary)]
-    rounded-md
-    p-4
-    outline-none
-    border-transparent
-    focus:outline-none
-    focus:ring-0
-    focus:border-[var(--clr-primary-secondary)]
-    focus:bg-[var(--clr-surface-a10)]
-    transition-colors
-    border-solid
-    border-4
-    duration-500
-    `,
-          className
-        )}
+        className={twMerge(`
+      flex-1
+      h-full
+      bg-transparent
+      text-[var(--clr-text-primary)]
+      outline-none
+      border-none
+      px-4
+      text-base
+    `)}
       />
       <div
-        className={`
-        relative 
-        right-8 
-        flex items-center 
-        justify-center 
-        align-middle
-        hover:cursor-pointer
-        text-[var(--clr-surface-a40)]
-        hover:text-[var(--clr-surface-a50)]
-        transition-colors
-        transition-duration-300`}
+        className={twMerge(`
+      flex 
+      items-center 
+      justify-center 
+      pr-4
+      hover:cursor-pointer
+      text-[var(--clr-surface-a40)]
+      hover:text-[var(--clr-surface-a50)]
+      transition-colors
+      duration-300
+    `)}
         onMouseUp={clearInput}
       >
         <X />

@@ -8,6 +8,7 @@ interface SearchTracksContextType {
   setQuery: (q: string) => void;
   setTracks: (tracks: Track[]) => void;
   setIsLoading: (loading: boolean) => void;
+  pageSize: number;
 }
 
 const SearchTracksContext = createContext<SearchTracksContextType | undefined>(
@@ -18,10 +19,19 @@ export const SearchTracksProvider = ({ children }: { children: ReactNode }) => {
   const [query, setQuery] = useState("");
   const [tracks, setTracks] = useState<Track[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const pageSize = 20; // Number of tracks to fetch per request
 
   return (
     <SearchTracksContext.Provider
-      value={{ query, tracks, isLoading, setQuery, setTracks, setIsLoading }}
+      value={{
+        query,
+        tracks,
+        isLoading,
+        setQuery,
+        setTracks,
+        setIsLoading,
+        pageSize,
+      }}
     >
       {children}
     </SearchTracksContext.Provider>
