@@ -1,0 +1,15 @@
+{
+  "name": "museek",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && electron ./dist/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "electron": "^39.1.1"
+  }
+}
