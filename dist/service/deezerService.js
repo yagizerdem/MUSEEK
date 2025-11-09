@@ -35,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { ServiceError } from "../errors/ServiceError.js";
+import { serviceResponseSuccess, } from "../model/serviceResponse/serviceResponse.js";
 import { logMessageWrapper } from "../utils/logMessageWrapper.js";
 var baseUrl = "https://api.deezer.com";
 export function getAlbumById(_a) {
@@ -63,7 +64,10 @@ export function getAlbumById(_a) {
                             logMessage: logMessageWrapper("Deezer API error for album ".concat(id, ": ").concat(JSON.stringify(data.error))),
                         });
                     }
-                    return [2 /*return*/, data];
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: data,
+                            message: "Album fetched successfully",
+                        })];
             }
         });
     });

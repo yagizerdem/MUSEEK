@@ -1,10 +1,18 @@
 import { ServiceError } from "../errors/ServiceError.js";
-import { AlbumDto } from "../model/deezerReturnTypes/AlbumDto.js";
+import { DeezerAlbum } from "../model/deezerReturnTypes/deezerAlbum.js";
+import {
+  ServiceResponse,
+  serviceResponseSuccess,
+} from "../model/serviceResponse/serviceResponse.js";
 import { logMessageWrapper } from "../utils/logMessageWrapper.js";
 
 const baseUrl = "https://api.deezer.com";
 
-export async function getAlbumById({ id }: { id: string }): Promise<AlbumDto> {
+export async function getAlbumById({
+  id,
+}: {
+  id: string;
+}): Promise<ServiceResponse<DeezerAlbum>> {
   const fullUrl = `${baseUrl}/album/${id}`;
   const response = await fetch(fullUrl);
 
@@ -28,5 +36,8 @@ export async function getAlbumById({ id }: { id: string }): Promise<AlbumDto> {
     });
   }
 
-  return data as AlbumDto;
+  return serviceResponseSuccess({
+    data: data as DeezerAlbum,
+    message: "Album fetched successfully",
+  });
 }

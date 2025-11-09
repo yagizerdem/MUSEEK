@@ -49,7 +49,7 @@ function testGetAlbumById() {
                         })];
                 case 1:
                     payload = _a.sent();
-                    console.log(payload);
+                    console.log(payload.data.artist.name, payload);
                     return [2 /*return*/];
             }
         });

@@ -35,30 +35,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { ServiceError } from "../errors/ServiceError.js";
-import { serviceResponseFail } from "../model/serviceResponse/serviceResponse.js";
+import { serviceResponseFail, } from "../model/serviceResponse/serviceResponse.js";
 export function executeServiceSafe(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
+        var result, err_1;
         var fun = _b.fun, args = _b.args;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, Promise.resolve(fun.apply(void 0, args)).catch(function (err) {
-                        if (err instanceof ServiceError) {
-                            if (err.isOperational) {
-                                return serviceResponseFail({
-                                    message: err.message || "An operational error occurred",
-                                });
-                            }
-                            return serviceResponseFail({
-                                message: "Unexpected error occurred",
-                            });
+                case 0:
+                    _c.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, Promise.resolve(fun.apply(void 0, args))];
+                case 1:
+                    result = _c.sent();
+                    return [2 /*return*/, result];
+                case 2:
+                    err_1 = _c.sent();
+                    if (err_1 instanceof ServiceError) {
+                        if (err_1.isOperational) {
+                            return [2 /*return*/, serviceResponseFail({
+                                    message: err_1.message || "An operational error occurred",
+                                })];
                         }
-                        else {
-                            return serviceResponseFail({
+                        return [2 /*return*/, serviceResponseFail({
                                 message: "Unexpected error occurred",
-                            });
-                        }
-                    })];
-                case 1: return [2 /*return*/, _c.sent()];
+                            })];
+                    }
+                    return [2 /*return*/, serviceResponseFail({
+                            message: "Unexpected error occurred",
+                        })];
+                case 3: return [2 /*return*/];
             }
         });
     });
