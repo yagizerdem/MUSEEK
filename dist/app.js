@@ -1,6 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var electron_1 = require("electron");
-var main_1 = require("./main");
-main_1.Main.main(electron_1.app);
+import { app } from "electron";
+import { Main } from "./main.js";
+import { initializeAppPaths } from "./appPaths.js";
+Main.main(app);
+app.on("ready", function () {
+    initializeAppPaths();
+});
 //# sourceMappingURL=app.js.map

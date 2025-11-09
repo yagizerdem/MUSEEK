@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Main = void 0;
-var electron_1 = require("electron");
+import { BrowserWindow, app } from "electron";
 var Main = /** @class */ (function () {
     function Main() {
     }
@@ -14,8 +11,8 @@ var Main = /** @class */ (function () {
         Main.mainWindow = null;
     };
     Main.onReady = function () {
-        Main.mainWindow = new electron_1.BrowserWindow({ width: 800, height: 600 });
-        if (electron_1.app.isPackaged) {
+        Main.mainWindow = new BrowserWindow({ width: 800, height: 600 });
+        if (app.isPackaged) {
             Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
         }
         else {
@@ -30,5 +27,5 @@ var Main = /** @class */ (function () {
     };
     return Main;
 }());
-exports.Main = Main;
+export { Main };
 //# sourceMappingURL=main.js.map

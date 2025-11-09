@@ -1,4 +1,4 @@
-import { getTraceId } from "../utils/getTraceId";
+import { getTraceId } from "../utils/getTraceId.js";
 
 interface ServiceErrorOptions {
   isOperational?: boolean;
