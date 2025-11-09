@@ -72,4 +72,42 @@ export function getAlbumById(_a) {
         });
     });
 }
+export function getAlbumFuzzySearchByAlbumTitle(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var params, fullUrl, response, data;
+        var albumName = _b.albumName, index = _b.index, limit = _b.limit;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    params = new URLSearchParams();
+                    params.append("q", "album:".concat(albumName));
+                    params.append("index", (index === null || index === void 0 ? void 0 : index.toString()) || "0");
+                    params.append("limit", (limit === null || limit === void 0 ? void 0 : limit.toString()) || "10");
+                    fullUrl = "".concat(baseUrl, "/search?").concat(params.toString());
+                    return [4 /*yield*/, fetch(fullUrl)];
+                case 1:
+                    response = _c.sent();
+                    if (!response.ok) {
+                        throw new ServiceError("Failed to fetch album search results from Deezer API", {
+                            isOperational: false,
+                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching albums with name \"").concat(albumName, "\" from ").concat(fullUrl)),
+                        });
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _c.sent();
+                    if (data.error) {
+                        throw new ServiceError("Album not found", {
+                            isOperational: true,
+                            logMessage: logMessageWrapper("Deezer API error for album ".concat(albumName, ": ").concat(JSON.stringify(data.error))),
+                        });
+                    }
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: data,
+                            message: "Album search results fetched successfully",
+                        })];
+            }
+        });
+    });
+}
 //# sourceMappingURL=deezerService.js.map

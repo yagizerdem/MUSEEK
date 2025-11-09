@@ -1,6 +1,10 @@
 import { DeezerAlbum } from "../model/deezerReturnTypes/deezerAlbum.js";
+import { DeezerPaginatedResponse } from "../model/deezerReturnTypes/deezerPaginatedResponse.js";
 import { ServiceResponse } from "../model/serviceResponse/serviceResponse.js";
-import { getAlbumById } from "../service/deezerService.js";
+import {
+  getAlbumById,
+  getAlbumFuzzySearchByAlbumTitle,
+} from "../service/deezerService.js";
 import { executeServiceSafe } from "../utils/executeServiceSafe.js";
 
 async function testGetAlbumById() {
@@ -14,4 +18,13 @@ async function testGetAlbumById() {
   console.log(payload.data.artist.name, payload);
 }
 
-testGetAlbumById();
+async function testDeezerPaginatedAlbumResponse() {
+  const payload: ServiceResponse<DeezerPaginatedResponse<DeezerAlbum>> =
+    await executeServiceSafe({
+      fun: getAlbumFuzzySearchByAlbumTitle,
+      args: [{ albumName: "discovery", index: 10, limit: 2 }],
+    });
+}
+
+// testGetAlbumById();
+testDeezerPaginatedAlbumResponse();

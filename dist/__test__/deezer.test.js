@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { getAlbumById } from "../service/deezerService.js";
+import { getAlbumById, getAlbumFuzzySearchByAlbumTitle, } from "../service/deezerService.js";
 import { executeServiceSafe } from "../utils/executeServiceSafe.js";
 function testGetAlbumById() {
     return __awaiter(this, void 0, void 0, function () {
@@ -55,5 +55,23 @@ function testGetAlbumById() {
         });
     });
 }
-testGetAlbumById();
+function testDeezerPaginatedAlbumResponse() {
+    return __awaiter(this, void 0, void 0, function () {
+        var payload;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, executeServiceSafe({
+                        fun: getAlbumFuzzySearchByAlbumTitle,
+                        args: [{ albumName: "discovery", index: 10, limit: 2 }],
+                    })];
+                case 1:
+                    payload = _a.sent();
+                    console.log(payload.data.data[0]);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+// testGetAlbumById();
+testDeezerPaginatedAlbumResponse();
 //# sourceMappingURL=deezer.test.js.map
