@@ -110,4 +110,148 @@ export function getAlbumFuzzySearchByAlbumTitle(_a) {
         });
     });
 }
+export function getArtistById(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var fullUrl, response, data;
+        var id = _b.id;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    fullUrl = "".concat(baseUrl, "/artist/").concat(id);
+                    return [4 /*yield*/, fetch(fullUrl)];
+                case 1:
+                    response = _c.sent();
+                    if (!response.ok) {
+                        throw new ServiceError("Failed to fetch artist data from Deezer API", {
+                            isOperational: false,
+                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching artist ").concat(id, " from ").concat(fullUrl)),
+                        });
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _c.sent();
+                    if (data.error) {
+                        throw new ServiceError("Artist not found", {
+                            isOperational: true,
+                            logMessage: logMessageWrapper("Deezer API error for artist ".concat(id, ": ").concat(JSON.stringify(data.error))),
+                        });
+                    }
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: data,
+                            message: "Artist fetched successfully",
+                        })];
+            }
+        });
+    });
+}
+export function getArtistFuzzySearchByArtistName(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var params, fullUrl, response, data;
+        var artistName = _b.artistName, index = _b.index, limit = _b.limit;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    params = new URLSearchParams();
+                    params.append("q", "artist:".concat(artistName));
+                    params.append("index", (index === null || index === void 0 ? void 0 : index.toString()) || "0");
+                    params.append("limit", (limit === null || limit === void 0 ? void 0 : limit.toString()) || "10");
+                    fullUrl = "".concat(baseUrl, "/search?").concat(params.toString());
+                    return [4 /*yield*/, fetch(fullUrl)];
+                case 1:
+                    response = _c.sent();
+                    if (!response.ok) {
+                        throw new ServiceError("Failed to fetch artist search results from Deezer API", {
+                            isOperational: false,
+                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching artists with name \"").concat(artistName, "\" from ").concat(fullUrl)),
+                        });
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _c.sent();
+                    if (data.error) {
+                        throw new ServiceError("Artist not found", {
+                            isOperational: true,
+                            logMessage: logMessageWrapper("Deezer API error for artist ".concat(artistName, ": ").concat(JSON.stringify(data.error))),
+                        });
+                    }
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: data,
+                            message: "Artist search results fetched successfully",
+                        })];
+            }
+        });
+    });
+}
+export function getTrackById(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var fullUrl, response, data;
+        var id = _b.id;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    fullUrl = "".concat(baseUrl, "/track/").concat(id);
+                    return [4 /*yield*/, fetch(fullUrl)];
+                case 1:
+                    response = _c.sent();
+                    if (!response.ok) {
+                        throw new ServiceError("Failed to fetch track data from Deezer API", {
+                            isOperational: false,
+                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching track ").concat(id, " from ").concat(fullUrl)),
+                        });
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _c.sent();
+                    if (data.error) {
+                        throw new ServiceError("Track not found", {
+                            isOperational: true,
+                            logMessage: logMessageWrapper("Deezer API error for track ".concat(id, ": ").concat(JSON.stringify(data.error))),
+                        });
+                    }
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: data,
+                            message: "Track fetched successfully",
+                        })];
+            }
+        });
+    });
+}
+export function getTrackFuzzySearchByTrackTitle(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var params, fullUrl, response, data;
+        var trackTitle = _b.trackTitle, index = _b.index, limit = _b.limit;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    params = new URLSearchParams();
+                    params.append("q", "track:".concat(trackTitle));
+                    params.append("index", (index === null || index === void 0 ? void 0 : index.toString()) || "0");
+                    params.append("limit", (limit === null || limit === void 0 ? void 0 : limit.toString()) || "10");
+                    fullUrl = "".concat(baseUrl, "/search?").concat(params.toString());
+                    return [4 /*yield*/, fetch(fullUrl)];
+                case 1:
+                    response = _c.sent();
+                    if (!response.ok) {
+                        throw new ServiceError("Failed to fetch track search results from Deezer API", {
+                            isOperational: false,
+                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching tracks with title \"").concat(trackTitle, "\" from ").concat(fullUrl)),
+                        });
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _c.sent();
+                    if (data.error) {
+                        throw new ServiceError("Track not found", {
+                            isOperational: true,
+                            logMessage: logMessageWrapper("Deezer API error for track ".concat(trackTitle, ": ").concat(JSON.stringify(data.error))),
+                        });
+                    }
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: data,
+                            message: "Track search results fetched successfully",
+                        })];
+            }
+        });
+    });
+}
 //# sourceMappingURL=deezerService.js.map

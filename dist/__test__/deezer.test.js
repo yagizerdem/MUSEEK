@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { getAlbumById, getAlbumFuzzySearchByAlbumTitle, } from "../service/deezerService.js";
+import { getAlbumById, getAlbumFuzzySearchByAlbumTitle, getArtistById, getArtistFuzzySearchByArtistName, getTrackById, getTrackFuzzySearchByTrackTitle, } from "../service/deezerService.js";
 import { executeServiceSafe } from "../utils/executeServiceSafe.js";
 function testGetAlbumById() {
     return __awaiter(this, void 0, void 0, function () {
@@ -66,6 +66,77 @@ function testDeezerPaginatedAlbumResponse() {
                     })];
                 case 1:
                     payload = _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function tesgetArtistById() {
+    return __awaiter(this, void 0, void 0, function () {
+        var tempId, payload;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    tempId = "27";
+                    return [4 /*yield*/, executeServiceSafe({
+                            fun: getArtistById,
+                            args: [{ id: tempId }],
+                        })];
+                case 1:
+                    payload = _a.sent();
+                    console.log(payload.data.name, payload);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function testgetArtistFuzzySearchByArtistName() {
+    return __awaiter(this, void 0, void 0, function () {
+        var payload;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, executeServiceSafe({
+                        fun: getArtistFuzzySearchByArtistName,
+                        args: [{ artistName: "tom", index: 0, limit: 3 }],
+                    })];
+                case 1:
+                    payload = _a.sent();
+                    console.log(payload.data);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function getTrackByIdTest() {
+    return __awaiter(this, void 0, void 0, function () {
+        var tempId, payload;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    tempId = "3135556";
+                    return [4 /*yield*/, executeServiceSafe({
+                            fun: getTrackById,
+                            args: [{ id: tempId }],
+                        })];
+                case 1:
+                    payload = _a.sent();
+                    console.log(payload.data.title, payload);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function getTrackFuzzySearchByTitleTest() {
+    return __awaiter(this, void 0, void 0, function () {
+        var payload;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, executeServiceSafe({
+                        fun: getTrackFuzzySearchByTrackTitle,
+                        args: [{ trackTitle: "believer", index: 0, limit: 5 }],
+                    })];
+                case 1:
+                    payload = _a.sent();
                     console.log(payload.data.data[0]);
                     return [2 /*return*/];
             }
@@ -73,5 +144,7 @@ function testDeezerPaginatedAlbumResponse() {
     });
 }
 // testGetAlbumById();
-testDeezerPaginatedAlbumResponse();
+// testDeezerPaginatedAlbumResponse();
+// testgetArtistFuzzySearchByArtistName();
+getTrackFuzzySearchByTitleTest();
 //# sourceMappingURL=deezer.test.js.map
