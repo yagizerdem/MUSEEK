@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { insertGenre, getAllGenres, updateGenreById, } from "../service/genreService.js";
+import { insertGenre, getAllGenres, updateGenreById, getGenreById, getGenreByName, getGenresWithPagination, } from "../service/genreService.js";
 import { executeServiceSafe } from "../utils/executeServiceSafe.js";
 function insertGenreTest() {
     return __awaiter(this, void 0, void 0, function () {
@@ -109,7 +109,60 @@ function updateGenreByIdTest() {
         });
     });
 }
+function getGenreByIdTest() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, executeServiceSafe({
+                        fun: getGenreById,
+                        args: [{ id: 134 }],
+                    })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function getGenreByNameTest() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, executeServiceSafe({
+                        fun: getGenreByName,
+                        args: [{ name: "Rock" }],
+                    })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function getGenreWithPaginationTest() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, executeServiceSafe({
+                        fun: getGenresWithPagination,
+                        args: [{ index: 0, limit: 2 }],
+                    })];
+                case 1:
+                    response = _a.sent();
+                    console.log(response);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 // insertGenreTest();
 // getAllGenresTest();
-updateGenreByIdTest();
+//updateGenreByIdTest();
+// getGenreByNameTest();
+getGenreWithPaginationTest();
 //# sourceMappingURL=genreService.test.js.map

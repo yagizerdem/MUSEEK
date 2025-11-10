@@ -100,3 +100,72 @@ export function updateGenreById({ genre }: { genre: DeezerGenre }) {
     );
   });
 }
+
+export function getGenreById({
+  id,
+}: {
+  id: number;
+}): Promise<DeezerGenre | null> {
+  return new Promise<DeezerGenre | null>((resolve, reject) => {
+    const db = getDatabase();
+    const sql = `SELECT * FROM DeezerGenre WHERE id = ?;`;
+    db.get(sql, [id], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row ? (row as DeezerGenre) : null);
+      }
+    });
+  });
+}
+
+export function getGenreByName({
+  name,
+}: {
+  name: string;
+}): Promise<DeezerGenre | null> {
+  return new Promise<DeezerGenre | null>((resolve, reject) => {
+    const db = getDatabase();
+    const sql = `SELECT * FROM DeezerGenre WHERE name = ?;`;
+    db.get(sql, [name], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row ? (row as DeezerGenre) : null);
+      }
+    });
+  });
+}
+
+export function getGenresWithPagination({
+  index,
+  limit,
+  orderBy = "name", // default order by name
+  orderDir = "ASC", // or "DESC"
+}: {
+  index: number;
+  limit: number;
+  orderBy?: keyof DeezerGenre | string;
+  orderDir?: "ASC" | "DESC";
+}) {
+  return new Promise<DeezerGenre[]>((resolve, reject) => {
+    const db = getDatabase();
+
+    const allowedColumns = ["id", "name", "type"];
+    if (!allowedColumns.includes(orderBy)) orderBy = "name";
+
+    const sql = `
+      SELECT * FROM DeezerGenre
+      ORDER BY ${orderBy} ${orderDir}
+      LIMIT ? OFFSET ?;
+    `;
+
+    db.all(sql, [limit, index], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows as DeezerGenre[]);
+      }
+    });
+  });
+}

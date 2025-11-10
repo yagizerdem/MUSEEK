@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { serviceResponseSuccess, } from "../model/serviceResponse/serviceResponse.js";
-import { insertGenre as insertGenreToDb, getAllGenre as getAllGenresFromDb, updateGenreById as updateGenreByIdFromDb, } from "../repository/genreRepository.js";
+import { insertGenre as insertGenreToDb, getAllGenre as getAllGenresFromDb, updateGenreById as updateGenreByIdFromDb, getGenreById as getGenreByIdFromDb, getGenreByName as getGenreByNameFromDb, getGenresWithPagination as getGenresWithPaginationFromDb, } from "../repository/genreRepository.js";
 export function insertGenre(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var genre = _b.genre;
@@ -79,6 +79,65 @@ export function updateGenreById(_a) {
                     return [2 /*return*/, serviceResponseSuccess({
                             data: genre,
                             message: "Genre updated successfully",
+                        })];
+            }
+        });
+    });
+}
+export function getGenreById(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var genre;
+        var id = _b.id;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0: return [4 /*yield*/, getGenreByIdFromDb({ id: id })];
+                case 1:
+                    genre = _c.sent();
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: genre,
+                            message: "Genre retrieved successfully",
+                        })];
+            }
+        });
+    });
+}
+export function getGenreByName(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var genre;
+        var name = _b.name;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0: return [4 /*yield*/, getGenreByNameFromDb({ name: name })];
+                case 1:
+                    genre = _c.sent();
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: genre,
+                            message: "Genre retrieved successfully",
+                        })];
+            }
+        });
+    });
+}
+export function getGenresWithPagination(_a) {
+    return __awaiter(this, arguments, void 0, function (_b) {
+        var genres;
+        var _c = _b.index, index = _c === void 0 ? 0 : _c, // default offset
+        _d = _b.limit, // default offset
+        limit = _d === void 0 ? 10 : _d, // default limit
+        orderBy = _b.orderBy, orderDir = _b.orderDir;
+        return __generator(this, function (_e) {
+            switch (_e.label) {
+                case 0: return [4 /*yield*/, getGenresWithPaginationFromDb({
+                        index: index,
+                        limit: limit,
+                        orderBy: orderBy,
+                        orderDir: orderDir,
+                    })];
+                case 1:
+                    genres = _e.sent();
+                    return [2 /*return*/, serviceResponseSuccess({
+                            data: genres,
+                            message: "Genres retrieved successfully",
                         })];
             }
         });

@@ -4,6 +4,9 @@ import {
   insertGenre,
   getAllGenres,
   updateGenreById,
+  getGenreById,
+  getGenreByName,
+  getGenresWithPagination,
 } from "../service/genreService.js";
 import { executeServiceSafe } from "../utils/executeServiceSafe.js";
 
@@ -56,6 +59,36 @@ async function updateGenreByIdTest() {
   console.log(response);
 }
 
+async function getGenreByIdTest() {
+  var response: ServiceResponse<DeezerGenre> = await executeServiceSafe({
+    fun: getGenreById,
+    args: [{ id: 134 }],
+  });
+
+  console.log(response);
+}
+
+async function getGenreByNameTest() {
+  var response: ServiceResponse<DeezerGenre> = await executeServiceSafe({
+    fun: getGenreByName,
+    args: [{ name: "Rock" }],
+  });
+
+  console.log(response);
+}
+
+async function getGenreWithPaginationTest() {
+  var response: ServiceResponse<DeezerGenre[]> = await executeServiceSafe({
+    fun: getGenresWithPagination,
+    args: [{ index: 0, limit: 2 }],
+  });
+
+  console.log(response);
+}
+
 // insertGenreTest();
 // getAllGenresTest();
-updateGenreByIdTest();
+//updateGenreByIdTest();
+
+// getGenreByNameTest();
+//getGenreWithPaginationTest();
