@@ -35,96 +35,96 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { serviceResponseSuccess, } from "../model/serviceResponse/serviceResponse.js";
-import { insertTrack as insertTrackToDb, getTrackById as getTrackByIdFromDb, getTrackByTitle as getTrackByTitleFromDb, getAllTrack as getAllTracksFromDb, getTracksWithPagination as getTracksWithPaginationFromDb, updateTrackById as updateTrackByIdInDb, } from "../repository/trackRepository.js";
-export function insertTrack(_a) {
+import { insertArtist as insertArtistToDb, getArtistById as getArtistByIdFromDb, getArtistByName as getArtistByNameFromDb, getAllArtist as getAllArtistsFromDb, getArtistsWithPagination as getArtistsWithPaginationFromDb, updateArtistById as updateArtistByIdInDb, } from "../repository/artistRepository.js";
+export function insertArtist(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
-        var track = _b.track;
+        var artist = _b.artist;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, insertTrackToDb({ track: track })];
+                case 0: return [4 /*yield*/, insertArtistToDb({ artist: artist })];
                 case 1:
                     _c.sent();
                     return [2 /*return*/, serviceResponseSuccess({
-                            data: track,
-                            message: "Track inserted successfully",
+                            data: artist,
+                            message: "Artist inserted successfully",
                         })];
             }
         });
     });
 }
-export function updateTrackById(_a) {
+export function updateArtistById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
-        var track = _b.track;
+        var artist = _b.artist;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, updateTrackByIdInDb({ track: track })];
+                case 0: return [4 /*yield*/, updateArtistByIdInDb({ artist: artist })];
                 case 1:
                     _c.sent();
                     return [2 /*return*/, serviceResponseSuccess({
-                            data: track,
-                            message: "Track updated successfully",
+                            data: artist,
+                            message: "Artist updated successfully",
                         })];
             }
         });
     });
 }
-export function getTrackById(_a) {
+export function getArtistById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
-        var track;
+        var artist;
         var id = _b.id;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, getTrackByIdFromDb({ id: id })];
+                case 0: return [4 /*yield*/, getArtistByIdFromDb({ id: id })];
                 case 1:
-                    track = _c.sent();
+                    artist = _c.sent();
                     return [2 /*return*/, serviceResponseSuccess({
-                            data: track,
-                            message: "Track retrieved successfully",
+                            data: artist,
+                            message: "Artist retrieved successfully",
                         })];
             }
         });
     });
 }
-export function getTrackByTitle(_a) {
+export function getArtistByName(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
-        var tracks;
-        var title = _b.title;
+        var artist;
+        var name = _b.name;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, getTrackByTitleFromDb({ title: title })];
+                case 0: return [4 /*yield*/, getArtistByNameFromDb({ name: name })];
                 case 1:
-                    tracks = _c.sent();
+                    artist = _c.sent();
                     return [2 /*return*/, serviceResponseSuccess({
-                            data: tracks,
-                            message: "Tracks retrieved successfully",
+                            data: artist,
+                            message: "Artist retrieved successfully",
                         })];
             }
         });
     });
 }
-export function getAllTracks() {
+export function getAllArtists() {
     return __awaiter(this, void 0, void 0, function () {
-        var tracks;
+        var artists;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getAllTracksFromDb()];
+                case 0: return [4 /*yield*/, getAllArtistsFromDb()];
                 case 1:
-                    tracks = _a.sent();
+                    artists = _a.sent();
                     return [2 /*return*/, serviceResponseSuccess({
-                            data: tracks,
-                            message: "Tracks retrieved successfully",
+                            data: artists,
+                            message: "Artists retrieved successfully",
                         })];
             }
         });
     });
 }
-export function getTracksWithPagination(_a) {
+export function getArtistsWithPagination(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
-        var tracks;
-        var index = _b.index, limit = _b.limit, _c = _b.orderBy, orderBy = _c === void 0 ? "rank" : _c, _d = _b.orderDir, orderDir = _d === void 0 ? "DESC" : _d, filterField = _b.filterField, filterValue = _b.filterValue, _e = _b.matchMode, matchMode = _e === void 0 ? "substring" : _e;
+        var artists;
+        var index = _b.index, limit = _b.limit, _c = _b.orderBy, orderBy = _c === void 0 ? "nb_fan" : _c, _d = _b.orderDir, orderDir = _d === void 0 ? "DESC" : _d, filterField = _b.filterField, filterValue = _b.filterValue, _e = _b.matchMode, matchMode = _e === void 0 ? "substring" : _e;
         return __generator(this, function (_f) {
             switch (_f.label) {
-                case 0: return [4 /*yield*/, getTracksWithPaginationFromDb({
+                case 0: return [4 /*yield*/, getArtistsWithPaginationFromDb({
                         index: index,
                         limit: limit,
                         orderBy: orderBy,
@@ -134,13 +134,13 @@ export function getTracksWithPagination(_a) {
                         matchMode: matchMode,
                     })];
                 case 1:
-                    tracks = _f.sent();
+                    artists = _f.sent();
                     return [2 /*return*/, serviceResponseSuccess({
-                            data: tracks,
-                            message: "Tracks retrieved successfully",
+                            data: artists,
+                            message: "Artists retrieved successfully",
                         })];
             }
         });
     });
 }
-//# sourceMappingURL=trackService.js.map
+//# sourceMappingURL=artistService.js.map

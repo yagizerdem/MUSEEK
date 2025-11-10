@@ -34,20 +34,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { insertAlbum, getAlbumById, getAlbumByTitle, getAllAlbums, getAlbumsWithPagination, } from "../service/albumService.js";
+import { insertTrack, getTrackById, getTrackByTitle, getAllTracks, getTracksWithPagination, } from "../service/trackService.js";
 import { executeServiceSafe } from "../utils/executeServiceSafe.js";
-function insertAlbumTest() {
+// ----------- TESTS ------------
+function insertTrackTest() {
     return __awaiter(this, void 0, void 0, function () {
-        var albums, i, album, _a, _b, _c, _i, i, album, payload;
+        var tracks, i, track, _a, _b, _c, _i, i, track, payload;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    albums = [];
+                    tracks = [];
                     for (i = 0; i < 5; i++) {
-                        album = createRandomAlbum();
-                        albums.push(album);
+                        track = createRandomTrack();
+                        tracks.push(track);
                     }
-                    _a = albums;
+                    _a = tracks;
                     _b = [];
                     for (_c in _a)
                         _b.push(_c);
@@ -58,14 +59,14 @@ function insertAlbumTest() {
                     _c = _b[_i];
                     if (!(_c in _a)) return [3 /*break*/, 3];
                     i = _c;
-                    album = albums[i];
+                    track = tracks[i];
                     return [4 /*yield*/, executeServiceSafe({
-                            fun: insertAlbum,
-                            args: [{ album: album }],
+                            fun: insertTrack,
+                            args: [{ track: track }],
                         })];
                 case 2:
                     payload = _d.sent();
-                    console.log("Index ".concat(i, " , Inserted Album:"), payload.data);
+                    console.log("Index ".concat(i, ", Inserted Track:"), payload.data);
                     console.log("-".repeat(50));
                     _d.label = 3;
                 case 3:
@@ -76,15 +77,15 @@ function insertAlbumTest() {
         });
     });
 }
-function getAlbumByIdTest() {
+function getTrackByIdTest() {
     return __awaiter(this, void 0, void 0, function () {
         var testId, payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    testId = 1280;
+                    testId = 1010;
                     return [4 /*yield*/, executeServiceSafe({
-                            fun: getAlbumById,
+                            fun: getTrackById,
                             args: [{ id: testId }],
                         })];
                 case 1:
@@ -95,15 +96,15 @@ function getAlbumByIdTest() {
         });
     });
 }
-function getAlbumByTitleTest() {
+function getTrackByTitleTest() {
     return __awaiter(this, void 0, void 0, function () {
         var testTitle, payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    testTitle = "Dream Moon";
+                    testTitle = "Dream Fire";
                     return [4 /*yield*/, executeServiceSafe({
-                            fun: getAlbumByTitle,
+                            fun: getTrackByTitle,
                             args: [{ title: testTitle }],
                         })];
                 case 1:
@@ -114,13 +115,13 @@ function getAlbumByTitleTest() {
         });
     });
 }
-function getAllAlbumsTest() {
+function getAllTracksTest() {
     return __awaiter(this, void 0, void 0, function () {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAllAlbums,
+                        fun: getAllTracks,
                         args: [],
                     })];
                 case 1:
@@ -131,14 +132,14 @@ function getAllAlbumsTest() {
         });
     });
 }
-function getAlbumsWithPaginationTest() {
+function getTracksWithPaginationTest() {
     return __awaiter(this, void 0, void 0, function () {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAlbumsWithPagination,
-                        args: [{ index: 0, limit: 5, orderBy: "title", orderDir: "DESC" }],
+                        fun: getTracksWithPagination,
+                        args: [{ index: 0, limit: 5, orderBy: "rank", orderDir: "DESC" }],
                     })];
                 case 1:
                     payload = _a.sent();
@@ -148,7 +149,7 @@ function getAlbumsWithPaginationTest() {
         });
     });
 }
-// auxilary
+// ----------- HELPERS ------------
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -175,70 +176,91 @@ function randomWord() {
     ];
     return randomChoice(words);
 }
-function createRandomAlbum() {
+function createRandomTrack() {
     var id = randomInt(1000, 9999);
     var title = "".concat(randomWord(), " ").concat(randomWord());
-    var label = randomChoice([
-        "Sony Music",
-        "Universal",
-        "Warner",
-        "Indie Records",
-        "Atlantic",
-    ]);
     var artistName = "".concat(randomWord(), " ").concat(randomWord());
-    var duration = randomInt(1200, 4800);
-    var nb_tracks = randomInt(8, 20);
-    var fans = randomInt(1000, 500000);
+    var albumTitle = "".concat(randomWord(), " ").concat(randomWord());
+    var duration = randomInt(120, 600);
+    var bpm = randomInt(60, 180);
+    var rank = randomInt(0, 1000000);
     return {
         id: id,
+        readable: Math.random() > 0.2,
         title: title,
-        upc: "UPC".concat(randomInt(1000000000, 9999999999)),
-        link: "https://www.deezer.com/album/".concat(id),
-        share: "https://share.deezer.com/album/".concat(id),
-        cover: "https://picsum.photos/seed/".concat(id, "/400/400"),
-        cover_small: "https://picsum.photos/seed/".concat(id, "/100/100"),
-        cover_medium: "https://picsum.photos/seed/".concat(id, "/250/250"),
-        cover_big: "https://picsum.photos/seed/".concat(id, "/500/500"),
-        cover_xl: "https://picsum.photos/seed/".concat(id, "/800/800"),
-        md5_image: Math.random().toString(36).substring(2, 18),
-        genre_id: randomInt(1, 10),
-        genres: { data: [] },
-        label: label,
-        nb_tracks: nb_tracks,
+        title_short: title.split(" ")[0],
+        title_version: "Original",
+        isrc: "ISRC".concat(randomInt(1000000, 9999999)),
+        link: "https://www.deezer.com/track/".concat(id),
+        share: "https://share.deezer.com/track/".concat(id),
         duration: duration,
-        fans: fans,
+        track_position: randomInt(1, 20),
+        disk_number: randomInt(1, 3),
+        rank: rank,
         release_date: randomDate(),
-        record_type: randomChoice(["album", "single", "ep"]),
-        available: Math.random() > 0.2,
-        tracklist: "https://api.deezer.com/album/".concat(id, "/tracks"),
         explicit_lyrics: Math.random() > 0.7,
         explicit_content_lyrics: randomInt(0, 2),
         explicit_content_cover: randomInt(0, 2),
+        preview: "https://cdn.preview.com/".concat(id),
+        bpm: bpm,
+        gain: Math.random() * 10,
+        available_countries: ["US", "TR", "DE", "FR", "UK"],
         contributors: [],
+        md5_image: Math.random().toString(36).substring(2, 18),
+        track_token: Math.random().toString(36).substring(2, 12),
         artist: {
-            share: "https://www.deezer.com/artist/".concat(id),
             id: randomInt(100, 999),
             name: artistName,
             link: "https://www.deezer.com/artist/".concat(id),
+            share: "https://share.deezer.com/artist/".concat(id),
             picture: "https://picsum.photos/seed/artist".concat(id, "/400/400"),
             picture_small: "https://picsum.photos/seed/artist".concat(id, "/100/100"),
             picture_medium: "https://picsum.photos/seed/artist".concat(id, "/250/250"),
             picture_big: "https://picsum.photos/seed/artist".concat(id, "/500/500"),
             picture_xl: "https://picsum.photos/seed/artist".concat(id, "/800/800"),
-            nb_album: randomInt(1, 30),
+            nb_album: randomInt(1, 20),
             nb_fan: randomInt(1000, 1000000),
             radio: Math.random() > 0.5,
             tracklist: "https://api.deezer.com/artist/".concat(id, "/top?limit=50"),
             type: "artist",
         },
-        type: "album",
-        tracks: { data: [] },
+        album: {
+            id: randomInt(2000, 9999),
+            title: albumTitle,
+            upc: "UPC".concat(randomInt(1000000000, 9999999999)),
+            link: "https://www.deezer.com/album/".concat(id),
+            share: "https://share.deezer.com/album/".concat(id),
+            cover: "https://picsum.photos/seed/album".concat(id, "/400/400"),
+            cover_small: "https://picsum.photos/seed/album".concat(id, "/100/100"),
+            cover_medium: "https://picsum.photos/seed/album".concat(id, "/250/250"),
+            cover_big: "https://picsum.photos/seed/album".concat(id, "/500/500"),
+            cover_xl: "https://picsum.photos/seed/album".concat(id, "/800/800"),
+            md5_image: Math.random().toString(36).substring(2, 18),
+            genre_id: randomInt(1, 10),
+            genres: { data: [] },
+            label: randomChoice(["Sony", "Universal", "Warner", "Atlantic"]),
+            nb_tracks: randomInt(8, 20),
+            duration: randomInt(1200, 4800),
+            fans: randomInt(1000, 500000),
+            release_date: randomDate(),
+            record_type: randomChoice(["album", "single", "ep"]),
+            available: Math.random() > 0.2,
+            tracklist: "https://api.deezer.com/album/".concat(id, "/tracks"),
+            explicit_lyrics: Math.random() > 0.7,
+            explicit_content_lyrics: randomInt(0, 2),
+            explicit_content_cover: randomInt(0, 2),
+            contributors: [],
+            artist: {}, // prevent circular reference
+            type: "album",
+            tracks: { data: [] },
+        },
+        type: "track",
     };
 }
-// tests
-// insertAlbumTest();
-// getAlbumByIdTest();
-// getAlbumByTitleTest();
-// getAllAlbumsTest();
-//getAlbumsWithPaginationTest();
-//# sourceMappingURL=albumService.test.js.map
+// ----------- RUN TESTS ------------
+insertTrackTest();
+getTrackByIdTest();
+getTrackByTitleTest();
+getAllTracksTest();
+getTracksWithPaginationTest();
+//# sourceMappingURL=trackService.test.js.map
