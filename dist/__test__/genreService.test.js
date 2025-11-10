@@ -34,117 +34,82 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { getAlbumById, getAlbumFuzzySearchByAlbumTitle, getArtistById, getArtistFuzzySearchByArtistName, getTrackById, getTrackFuzzySearchByTrackTitle, } from "../service/deezerService.js";
+import { insertGenre, getAllGenres, updateGenreById, } from "../service/genreService.js";
 import { executeServiceSafe } from "../utils/executeServiceSafe.js";
-function testGetAlbumById() {
+function insertGenreTest() {
     return __awaiter(this, void 0, void 0, function () {
-        var tempId, payload;
+        var genre, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    tempId = "23";
+                    genre = {
+                        id: 134,
+                        name: "Dance",
+                        picture: "https://api.deezer.com/genre/132/image",
+                        picture_small: "https://api.deezer.com/genre/132/image_small",
+                        picture_medium: "https://api.deezer.com/genre/132/image_medium",
+                        picture_big: "https://api.deezer.com/genre/132/image_big",
+                        picture_xl: "https://api.deezer.com/genre/132/image_xl",
+                        type: "genre",
+                    };
                     return [4 /*yield*/, executeServiceSafe({
-                            fun: getAlbumById,
-                            args: [{ id: tempId }],
+                            fun: insertGenre,
+                            args: [{ genre: genre }],
                         })];
                 case 1:
-                    payload = _a.sent();
-                    console.log(payload.data.artist.name, payload);
+                    response = _a.sent();
+                    console.log(response);
                     return [2 /*return*/];
             }
         });
     });
 }
-function testDeezerPaginatedAlbumResponse() {
+function getAllGenresTest() {
     return __awaiter(this, void 0, void 0, function () {
-        var payload;
+        var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAlbumFuzzySearchByAlbumTitle,
-                        args: [{ albumName: "discovery", index: 10, limit: 2 }],
+                        fun: getAllGenres,
+                        args: [],
                     })];
                 case 1:
-                    payload = _a.sent();
+                    response = _a.sent();
+                    console.log(response);
                     return [2 /*return*/];
             }
         });
     });
 }
-function tesgetArtistById() {
+function updateGenreByIdTest() {
     return __awaiter(this, void 0, void 0, function () {
-        var tempId, payload;
+        var genre, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    tempId = "27";
+                    genre = {
+                        id: 134,
+                        name: "Rock",
+                        picture: "https://api.deezer.com/genre/132/image",
+                        picture_small: "https://api.deezer.com/genre/132/image_small",
+                        picture_medium: "https://api.deezer.com/genre/132/image_medium",
+                        picture_big: "https://api.deezer.com/genre/132/image_big",
+                        picture_xl: "https://api.deezer.com/genre/132/image_xl",
+                        type: "genre",
+                    };
                     return [4 /*yield*/, executeServiceSafe({
-                            fun: getArtistById,
-                            args: [{ id: tempId }],
+                            fun: updateGenreById,
+                            args: [{ genre: genre }],
                         })];
                 case 1:
-                    payload = _a.sent();
-                    console.log(payload.data.name, payload);
+                    response = _a.sent();
+                    console.log(response);
                     return [2 /*return*/];
             }
         });
     });
 }
-function testgetArtistFuzzySearchByArtistName() {
-    return __awaiter(this, void 0, void 0, function () {
-        var payload;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getArtistFuzzySearchByArtistName,
-                        args: [{ artistName: "tom", index: 0, limit: 3 }],
-                    })];
-                case 1:
-                    payload = _a.sent();
-                    console.log(payload.data);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function getTrackByIdTest() {
-    return __awaiter(this, void 0, void 0, function () {
-        var tempId, payload;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    tempId = "3135556";
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getTrackById,
-                            args: [{ id: tempId }],
-                        })];
-                case 1:
-                    payload = _a.sent();
-                    console.log(payload.data.title, payload);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function getTrackFuzzySearchByTitleTest() {
-    return __awaiter(this, void 0, void 0, function () {
-        var payload;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getTrackFuzzySearchByTrackTitle,
-                        args: [{ trackTitle: "believer", index: 0, limit: 5 }],
-                    })];
-                case 1:
-                    payload = _a.sent();
-                    console.log(payload.data.data[0]);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-// testGetAlbumById();
-// testDeezerPaginatedAlbumResponse();
-// testgetArtistFuzzySearchByArtistName();
-//getTrackFuzzySearchByTitleTest();
-//# sourceMappingURL=deezer.test.js.map
+// insertGenreTest();
+// getAllGenresTest();
+updateGenreByIdTest();
+//# sourceMappingURL=genreService.test.js.map

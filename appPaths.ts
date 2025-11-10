@@ -1,4 +1,4 @@
-import { mkdirSync, existsSync } from "fs";
+import { mkdirSync, existsSync, writeFileSync } from "fs";
 import { join } from "path";
 
 function creatRootFolder() {
@@ -12,6 +12,17 @@ function creatRootFolder() {
   }
 }
 
+function createDbFile() {
+  const appDataAbsolutePath = process.env.APPDATA;
+  const museekFolderName = "MUSEEK";
+  const dbFileName = "museek.db";
+  const absolutePath = join(appDataAbsolutePath, museekFolderName, dbFileName);
+  if (!existsSync(absolutePath)) {
+    writeFileSync(absolutePath, ""); // create empty file for sqlite
+  }
+}
+
 export function initializeAppPaths() {
   creatRootFolder();
+  createDbFile();
 }

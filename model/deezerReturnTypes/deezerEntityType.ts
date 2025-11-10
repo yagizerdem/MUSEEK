@@ -4,4 +4,5 @@ export type DeezerEntityType =
   | "track"
   | "playlist"
   | "podcast"
-  | "radio";
+  | "radio"
+  | "genre";
