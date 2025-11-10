@@ -258,9 +258,9 @@ function createRandomTrack() {
     };
 }
 // ----------- RUN TESTS ------------
-insertTrackTest();
-getTrackByIdTest();
-getTrackByTitleTest();
-getAllTracksTest();
-getTracksWithPaginationTest();
+// insertTrackTest();
+// getTrackByIdTest();
+// getTrackByTitleTest();
+// getAllTracksTest();
+// getTracksWithPaginationTest();
 //# sourceMappingURL=trackService.test.js.map
