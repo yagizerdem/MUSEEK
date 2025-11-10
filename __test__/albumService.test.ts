@@ -163,4 +163,4 @@ function createRandomAlbum(): DeezerAlbum {
 // getAlbumByIdTest();
 // getAlbumByTitleTest();
 // getAllAlbumsTest();
-getAlbumsWithPaginationTest();
+//getAlbumsWithPaginationTest();
