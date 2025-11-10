@@ -207,7 +207,7 @@ export function getAlbumsWithPagination({
   orderDir = "DESC",
   filterField, // "title", "label"
   filterValue, //  "love"
-  matchMode = "substring", // "substring" veya "exact"
+  matchMode = "substring", // "substring" | "exact"
 }: {
   index: number;
   limit: number;

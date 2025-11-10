@@ -164,5 +164,5 @@ function getGenreWithPaginationTest() {
 // getAllGenresTest();
 //updateGenreByIdTest();
 // getGenreByNameTest();
-getGenreWithPaginationTest();
+//getGenreWithPaginationTest();
 //# sourceMappingURL=genreService.test.js.map
