@@ -1,9 +1,11 @@
+import { RouterProvider } from "react-router";
 import { DefaultLayout } from "./layout/DefaultLayout";
+import { router } from "./route";
 
 function App() {
   return (
     <DefaultLayout>
-      <div>app</div>
+      <RouterProvider router={router} />
     </DefaultLayout>
   );
 }
