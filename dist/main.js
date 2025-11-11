@@ -11,7 +11,15 @@ var Main = /** @class */ (function () {
         Main.mainWindow = null;
     };
     Main.onReady = function () {
-        Main.mainWindow = new BrowserWindow({ width: 800, height: 600 });
+        Main.mainWindow = new BrowserWindow({
+            width: 800,
+            height: 600,
+            frame: false,
+            webPreferences: {
+                nodeIntegration: false,
+                contextIsolation: true,
+            },
+        });
         if (app.isPackaged) {
             Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
         }

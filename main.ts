@@ -14,7 +14,15 @@ export class Main {
   }
 
   private static onReady() {
-    Main.mainWindow = new BrowserWindow({ width: 800, height: 600 });
+    Main.mainWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      frame: false,
+      webPreferences: {
+        nodeIntegration: false,
+        contextIsolation: true,
+      },
+    });
 
     if (app.isPackaged) {
       Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
