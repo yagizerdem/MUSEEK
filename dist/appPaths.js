@@ -1,23 +1,26 @@
-import { mkdirSync, existsSync, writeFileSync } from "fs";
-import { join } from "path";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initializeAppPaths = initializeAppPaths;
+var fs_1 = require("fs");
+var path_1 = require("path");
 function creatRootFolder() {
     var appDataAbsolutePath = process.env.APPDATA;
     var museekFolderName = "MUSEEK";
-    var absolutePath = join(appDataAbsolutePath, museekFolderName);
-    if (!existsSync(absolutePath)) {
-        mkdirSync(absolutePath);
+    var absolutePath = (0, path_1.join)(appDataAbsolutePath, museekFolderName);
+    if (!(0, fs_1.existsSync)(absolutePath)) {
+        (0, fs_1.mkdirSync)(absolutePath);
     }
 }
 function createDbFile() {
     var appDataAbsolutePath = process.env.APPDATA;
     var museekFolderName = "MUSEEK";
     var dbFileName = "museek.db";
-    var absolutePath = join(appDataAbsolutePath, museekFolderName, dbFileName);
-    if (!existsSync(absolutePath)) {
-        writeFileSync(absolutePath, ""); // create empty file for sqlite
+    var absolutePath = (0, path_1.join)(appDataAbsolutePath, museekFolderName, dbFileName);
+    if (!(0, fs_1.existsSync)(absolutePath)) {
+        (0, fs_1.writeFileSync)(absolutePath, ""); // create empty file for sqlite
     }
 }
-export function initializeAppPaths() {
+function initializeAppPaths() {
     creatRootFolder();
     createDbFile();
 }

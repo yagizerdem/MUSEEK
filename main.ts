@@ -1,4 +1,5 @@
 import { BrowserWindow, app } from "electron";
+import path from "path";
 
 export class Main {
   static mainWindow: Electron.BrowserWindow;
@@ -21,6 +22,7 @@ export class Main {
       webPreferences: {
         nodeIntegration: false,
         contextIsolation: true,
+        preload: path.join(__dirname, "preload.js"),
       },
     });
 

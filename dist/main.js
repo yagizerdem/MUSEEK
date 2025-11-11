@@ -1,4 +1,11 @@
-import { BrowserWindow, app } from "electron";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Main = void 0;
+var electron_1 = require("electron");
+var path_1 = __importDefault(require("path"));
 var Main = /** @class */ (function () {
     function Main() {
     }
@@ -11,16 +18,17 @@ var Main = /** @class */ (function () {
         Main.mainWindow = null;
     };
     Main.onReady = function () {
-        Main.mainWindow = new BrowserWindow({
+        Main.mainWindow = new electron_1.BrowserWindow({
             width: 800,
             height: 600,
             frame: false,
             webPreferences: {
                 nodeIntegration: false,
                 contextIsolation: true,
+                preload: path_1.default.join(__dirname, "preload.js"),
             },
         });
-        if (app.isPackaged) {
+        if (electron_1.app.isPackaged) {
             Main.mainWindow.loadURL("file://" + __dirname + "/index.html");
         }
         else {
@@ -35,5 +43,5 @@ var Main = /** @class */ (function () {
     };
     return Main;
 }());
-export { Main };
+exports.Main = Main;
 //# sourceMappingURL=main.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,8 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { insertAlbum, getAlbumById, getAlbumByTitle, getAllAlbums, getAlbumsWithPagination, } from "../service/albumService.js";
-import { executeServiceSafe } from "../utils/executeServiceSafe.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+var albumService_js_1 = require("../service/albumService.js");
+var executeServiceSafe_js_1 = require("../utils/executeServiceSafe.js");
 function insertAlbumTest() {
     return __awaiter(this, void 0, void 0, function () {
         var albums, i, album, _a, _b, _c, _i, i, album, payload;
@@ -59,8 +61,8 @@ function insertAlbumTest() {
                     if (!(_c in _a)) return [3 /*break*/, 3];
                     i = _c;
                     album = albums[i];
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: insertAlbum,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: albumService_js_1.insertAlbum,
                             args: [{ album: album }],
                         })];
                 case 2:
@@ -83,8 +85,8 @@ function getAlbumByIdTest() {
             switch (_a.label) {
                 case 0:
                     testId = 1280;
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getAlbumById,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: albumService_js_1.getAlbumById,
                             args: [{ id: testId }],
                         })];
                 case 1:
@@ -102,8 +104,8 @@ function getAlbumByTitleTest() {
             switch (_a.label) {
                 case 0:
                     testTitle = "Dream Moon";
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getAlbumByTitle,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: albumService_js_1.getAlbumByTitle,
                             args: [{ title: testTitle }],
                         })];
                 case 1:
@@ -119,8 +121,8 @@ function getAllAlbumsTest() {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAllAlbums,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: albumService_js_1.getAllAlbums,
                         args: [],
                     })];
                 case 1:
@@ -136,8 +138,8 @@ function getAlbumsWithPaginationTest() {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAlbumsWithPagination,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: albumService_js_1.getAlbumsWithPagination,
                         args: [{ index: 0, limit: 5, orderBy: "title", orderDir: "DESC" }],
                     })];
                 case 1:

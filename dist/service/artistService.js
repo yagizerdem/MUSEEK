@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,17 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { serviceResponseSuccess, } from "../model/serviceResponse/serviceResponse.js";
-import { insertArtist as insertArtistToDb, getArtistById as getArtistByIdFromDb, getArtistByName as getArtistByNameFromDb, getAllArtist as getAllArtistsFromDb, getArtistsWithPagination as getArtistsWithPaginationFromDb, updateArtistById as updateArtistByIdInDb, } from "../repository/artistRepository.js";
-export function insertArtist(_a) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.insertArtist = insertArtist;
+exports.updateArtistById = updateArtistById;
+exports.getArtistById = getArtistById;
+exports.getArtistByName = getArtistByName;
+exports.getAllArtists = getAllArtists;
+exports.getArtistsWithPagination = getArtistsWithPagination;
+var serviceResponse_js_1 = require("../model/serviceResponse/serviceResponse.js");
+var artistRepository_js_1 = require("../repository/artistRepository.js");
+function insertArtist(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var artist = _b.artist;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, insertArtistToDb({ artist: artist })];
+                case 0: return [4 /*yield*/, (0, artistRepository_js_1.insertArtist)({ artist: artist })];
                 case 1:
                     _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: artist,
                             message: "Artist inserted successfully",
                         })];
@@ -52,15 +60,15 @@ export function insertArtist(_a) {
         });
     });
 }
-export function updateArtistById(_a) {
+function updateArtistById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var artist = _b.artist;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, updateArtistByIdInDb({ artist: artist })];
+                case 0: return [4 /*yield*/, (0, artistRepository_js_1.updateArtistById)({ artist: artist })];
                 case 1:
                     _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: artist,
                             message: "Artist updated successfully",
                         })];
@@ -68,16 +76,16 @@ export function updateArtistById(_a) {
         });
     });
 }
-export function getArtistById(_a) {
+function getArtistById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var artist;
         var id = _b.id;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, getArtistByIdFromDb({ id: id })];
+                case 0: return [4 /*yield*/, (0, artistRepository_js_1.getArtistById)({ id: id })];
                 case 1:
                     artist = _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: artist,
                             message: "Artist retrieved successfully",
                         })];
@@ -85,16 +93,16 @@ export function getArtistById(_a) {
         });
     });
 }
-export function getArtistByName(_a) {
+function getArtistByName(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var artist;
         var name = _b.name;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, getArtistByNameFromDb({ name: name })];
+                case 0: return [4 /*yield*/, (0, artistRepository_js_1.getArtistByName)({ name: name })];
                 case 1:
                     artist = _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: artist,
                             message: "Artist retrieved successfully",
                         })];
@@ -102,15 +110,15 @@ export function getArtistByName(_a) {
         });
     });
 }
-export function getAllArtists() {
+function getAllArtists() {
     return __awaiter(this, void 0, void 0, function () {
         var artists;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getAllArtistsFromDb()];
+                case 0: return [4 /*yield*/, (0, artistRepository_js_1.getAllArtist)()];
                 case 1:
                     artists = _a.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: artists,
                             message: "Artists retrieved successfully",
                         })];
@@ -118,13 +126,13 @@ export function getAllArtists() {
         });
     });
 }
-export function getArtistsWithPagination(_a) {
+function getArtistsWithPagination(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var artists;
         var index = _b.index, limit = _b.limit, _c = _b.orderBy, orderBy = _c === void 0 ? "nb_fan" : _c, _d = _b.orderDir, orderDir = _d === void 0 ? "DESC" : _d, filterField = _b.filterField, filterValue = _b.filterValue, _e = _b.matchMode, matchMode = _e === void 0 ? "substring" : _e;
         return __generator(this, function (_f) {
             switch (_f.label) {
-                case 0: return [4 /*yield*/, getArtistsWithPaginationFromDb({
+                case 0: return [4 /*yield*/, (0, artistRepository_js_1.getArtistsWithPagination)({
                         index: index,
                         limit: limit,
                         orderBy: orderBy,
@@ -135,7 +143,7 @@ export function getArtistsWithPagination(_a) {
                     })];
                 case 1:
                     artists = _f.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: artists,
                             message: "Artists retrieved successfully",
                         })];

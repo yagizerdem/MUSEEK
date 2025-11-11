@@ -1,12 +1,19 @@
-import { join } from "path";
-import sqlite3 from "sqlite3";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initializeDatabase = initializeDatabase;
+exports.getDatabase = getDatabase;
+var path_1 = require("path");
+var sqlite3_1 = __importDefault(require("sqlite3"));
 var db = null;
-export function initializeDatabase() {
+function initializeDatabase() {
     var appDataAbsolutePath = process.env.APPDATA;
     var museekFolderName = "MUSEEK";
     var dbFileName = "museek.db";
-    var absolutePath = join(appDataAbsolutePath, museekFolderName, dbFileName);
-    db = new sqlite3.Database(absolutePath, function (err) {
+    var absolutePath = (0, path_1.join)(appDataAbsolutePath, museekFolderName, dbFileName);
+    db = new sqlite3_1.default.Database(absolutePath, function (err) {
         if (err) {
             console.error("Error opening database: ", err.message);
             process.exit(1);
@@ -19,7 +26,7 @@ export function initializeDatabase() {
         });
     });
 }
-export function getDatabase() {
+function getDatabase() {
     if (!db) {
         initializeDatabase();
     }

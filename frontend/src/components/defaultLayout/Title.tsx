@@ -3,6 +3,18 @@ import { Button } from "../ui/button";
 import { Fullscreen, Minus, X } from "lucide-react";
 
 export function Title() {
+  function maximizePanel() {
+    window.windowController.maximizePanel();
+  }
+
+  function minimizePanel() {
+    window.windowController.minimizePanel();
+  }
+
+  function closePanel() {
+    window.windowController.closePanel();
+  }
+
   return (
     <div className="w-full h-12 bg-(--color-secondary) flex flex-row items-center draggable justify-between">
       <div className="flex flex-row items-center">
@@ -16,6 +28,7 @@ export function Title() {
           size="sm"
           variant="outline"
           className="mr-2 cursor-pointer no-drag"
+          onMouseUp={() => minimizePanel()}
         >
           <Minus />
         </Button>
@@ -23,6 +36,7 @@ export function Title() {
           variant="outline"
           size="sm"
           className="mr-2 cursor-pointer no-drag"
+          onMouseUp={() => maximizePanel()}
         >
           <Fullscreen />
         </Button>
@@ -30,6 +44,7 @@ export function Title() {
           variant="destructive"
           size="sm"
           className="mr-2 cursor-pointer no-drag"
+          onMouseUp={() => closePanel()}
         >
           <X />
         </Button>

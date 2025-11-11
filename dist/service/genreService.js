@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,17 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { serviceResponseSuccess, } from "../model/serviceResponse/serviceResponse.js";
-import { insertGenre as insertGenreToDb, getAllGenre as getAllGenresFromDb, updateGenreById as updateGenreByIdFromDb, getGenreById as getGenreByIdFromDb, getGenreByName as getGenreByNameFromDb, getGenresWithPagination as getGenresWithPaginationFromDb, } from "../repository/genreRepository.js";
-export function insertGenre(_a) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.insertGenre = insertGenre;
+exports.getAllGenres = getAllGenres;
+exports.updateGenreById = updateGenreById;
+exports.getGenreById = getGenreById;
+exports.getGenreByName = getGenreByName;
+exports.getGenresWithPagination = getGenresWithPagination;
+var serviceResponse_js_1 = require("../model/serviceResponse/serviceResponse.js");
+var genreRepository_js_1 = require("../repository/genreRepository.js");
+function insertGenre(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var genre = _b.genre;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, insertGenreToDb({ genre: genre })];
+                case 0: return [4 /*yield*/, (0, genreRepository_js_1.insertGenre)({ genre: genre })];
                 case 1:
                     _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: genre,
                             message: "Genre inserted successfully",
                         })];
@@ -52,15 +60,15 @@ export function insertGenre(_a) {
         });
     });
 }
-export function getAllGenres() {
+function getAllGenres() {
     return __awaiter(this, void 0, void 0, function () {
         var genres;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getAllGenresFromDb()];
+                case 0: return [4 /*yield*/, (0, genreRepository_js_1.getAllGenre)()];
                 case 1:
                     genres = _a.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: genres,
                             message: "Genres retrieved successfully",
                         })];
@@ -68,15 +76,15 @@ export function getAllGenres() {
         });
     });
 }
-export function updateGenreById(_a) {
+function updateGenreById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var genre = _b.genre;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, updateGenreByIdFromDb({ genre: genre })];
+                case 0: return [4 /*yield*/, (0, genreRepository_js_1.updateGenreById)({ genre: genre })];
                 case 1:
                     _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: genre,
                             message: "Genre updated successfully",
                         })];
@@ -84,16 +92,16 @@ export function updateGenreById(_a) {
         });
     });
 }
-export function getGenreById(_a) {
+function getGenreById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var genre;
         var id = _b.id;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, getGenreByIdFromDb({ id: id })];
+                case 0: return [4 /*yield*/, (0, genreRepository_js_1.getGenreById)({ id: id })];
                 case 1:
                     genre = _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: genre,
                             message: "Genre retrieved successfully",
                         })];
@@ -101,16 +109,16 @@ export function getGenreById(_a) {
         });
     });
 }
-export function getGenreByName(_a) {
+function getGenreByName(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var genre;
         var name = _b.name;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, getGenreByNameFromDb({ name: name })];
+                case 0: return [4 /*yield*/, (0, genreRepository_js_1.getGenreByName)({ name: name })];
                 case 1:
                     genre = _c.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: genre,
                             message: "Genre retrieved successfully",
                         })];
@@ -118,7 +126,7 @@ export function getGenreByName(_a) {
         });
     });
 }
-export function getGenresWithPagination(_a) {
+function getGenresWithPagination(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var genres;
         var _c = _b.index, index = _c === void 0 ? 0 : _c, // default offset
@@ -127,7 +135,7 @@ export function getGenresWithPagination(_a) {
         orderBy = _b.orderBy, orderDir = _b.orderDir;
         return __generator(this, function (_e) {
             switch (_e.label) {
-                case 0: return [4 /*yield*/, getGenresWithPaginationFromDb({
+                case 0: return [4 /*yield*/, (0, genreRepository_js_1.getGenresWithPagination)({
                         index: index,
                         limit: limit,
                         orderBy: orderBy,
@@ -135,7 +143,7 @@ export function getGenresWithPagination(_a) {
                     })];
                 case 1:
                     genres = _e.sent();
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: genres,
                             message: "Genres retrieved successfully",
                         })];

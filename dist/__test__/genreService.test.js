@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,8 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { insertGenre, getAllGenres, updateGenreById, getGenreById, getGenreByName, getGenresWithPagination, } from "../service/genreService.js";
-import { executeServiceSafe } from "../utils/executeServiceSafe.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+var genreService_js_1 = require("../service/genreService.js");
+var executeServiceSafe_js_1 = require("../utils/executeServiceSafe.js");
 function insertGenreTest() {
     return __awaiter(this, void 0, void 0, function () {
         var genre, response;
@@ -52,8 +54,8 @@ function insertGenreTest() {
                         picture_xl: "https://api.deezer.com/genre/132/image_xl",
                         type: "genre",
                     };
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: insertGenre,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: genreService_js_1.insertGenre,
                             args: [{ genre: genre }],
                         })];
                 case 1:
@@ -69,8 +71,8 @@ function getAllGenresTest() {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAllGenres,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: genreService_js_1.getAllGenres,
                         args: [],
                     })];
                 case 1:
@@ -97,8 +99,8 @@ function updateGenreByIdTest() {
                         picture_xl: "https://api.deezer.com/genre/132/image_xl",
                         type: "genre",
                     };
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: updateGenreById,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: genreService_js_1.updateGenreById,
                             args: [{ genre: genre }],
                         })];
                 case 1:
@@ -114,8 +116,8 @@ function getGenreByIdTest() {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getGenreById,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: genreService_js_1.getGenreById,
                         args: [{ id: 134 }],
                     })];
                 case 1:
@@ -131,8 +133,8 @@ function getGenreByNameTest() {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getGenreByName,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: genreService_js_1.getGenreByName,
                         args: [{ name: "Rock" }],
                     })];
                 case 1:
@@ -148,8 +150,8 @@ function getGenreWithPaginationTest() {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getGenresWithPagination,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: genreService_js_1.getGenresWithPagination,
                         args: [{ index: 0, limit: 2 }],
                     })];
                 case 1:

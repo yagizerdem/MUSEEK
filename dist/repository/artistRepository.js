@@ -1,13 +1,22 @@
-import { getDatabase } from "../database.js";
-export function createArtistTable() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createArtistTable = createArtistTable;
+exports.insertArtist = insertArtist;
+exports.getAllArtist = getAllArtist;
+exports.updateArtistById = updateArtistById;
+exports.getArtistById = getArtistById;
+exports.getArtistByName = getArtistByName;
+exports.getArtistsWithPagination = getArtistsWithPagination;
+var database_js_1 = require("../database.js");
+function createArtistTable() {
     var sql = "\nCREATE TABLE IF NOT EXISTS DeezerArtist (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  link TEXT,\n  share TEXT,\n  picture TEXT,\n  picture_small TEXT,\n  picture_medium TEXT,\n  picture_big TEXT,\n  picture_xl TEXT,\n  nb_album INTEGER,\n  nb_fan INTEGER,\n  radio INTEGER,\n  tracklist TEXT,\n  type TEXT\n);\n";
-    var db = getDatabase();
+    var db = (0, database_js_1.getDatabase)();
     db.prepare(sql).run();
 }
-export function insertArtist(_a) {
+function insertArtist(_a) {
     var artist = _a.artist;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "\n      INSERT OR REPLACE INTO DeezerArtist\n      (\n        id, name, link, share,\n        picture, picture_small, picture_medium, picture_big, picture_xl,\n        nb_album, nb_fan, radio, tracklist, type\n      )\n      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n    ";
         db.run(sql, [
             artist.id,
@@ -27,9 +36,9 @@ export function insertArtist(_a) {
         ], function (err) { return (err ? reject(err) : resolve()); });
     });
 }
-export function getAllArtist() {
+function getAllArtist() {
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerArtist;";
         db.all(sql, function (err, rows) {
             if (err)
@@ -39,10 +48,10 @@ export function getAllArtist() {
         });
     });
 }
-export function updateArtistById(_a) {
+function updateArtistById(_a) {
     var artist = _a.artist;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "\n      UPDATE DeezerArtist\n      SET \n        name = ?,\n        link = ?,\n        share = ?,\n        picture = ?,\n        picture_small = ?,\n        picture_medium = ?,\n        picture_big = ?,\n        picture_xl = ?,\n        nb_album = ?,\n        nb_fan = ?,\n        radio = ?,\n        tracklist = ?,\n        type = ?\n      WHERE id = ?;\n    ";
         db.run(sql, [
             artist.name,
@@ -62,10 +71,10 @@ export function updateArtistById(_a) {
         ], function (err) { return (err ? reject(err) : resolve()); });
     });
 }
-export function getArtistById(_a) {
+function getArtistById(_a) {
     var id = _a.id;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerArtist WHERE id = ?;";
         db.get(sql, [id], function (err, row) {
             if (err)
@@ -75,10 +84,10 @@ export function getArtistById(_a) {
         });
     });
 }
-export function getArtistByName(_a) {
+function getArtistByName(_a) {
     var name = _a.name;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerArtist WHERE name = ?;";
         db.get(sql, [name], function (err, row) {
             if (err)
@@ -88,10 +97,10 @@ export function getArtistByName(_a) {
         });
     });
 }
-export function getArtistsWithPagination(_a) {
+function getArtistsWithPagination(_a) {
     var index = _a.index, limit = _a.limit, _b = _a.orderBy, orderBy = _b === void 0 ? "nb_fan" : _b, _c = _a.orderDir, orderDir = _c === void 0 ? "DESC" : _c, filterField = _a.filterField, filterValue = _a.filterValue, _d = _a.matchMode, matchMode = _d === void 0 ? "substring" : _d;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var allowedColumns = [
             "id",
             "name",

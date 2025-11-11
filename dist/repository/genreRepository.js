@@ -1,13 +1,22 @@
-import { getDatabase } from "../database.js";
-export function createGenreTable() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createGenreTable = createGenreTable;
+exports.insertGenre = insertGenre;
+exports.getAllGenre = getAllGenre;
+exports.updateGenreById = updateGenreById;
+exports.getGenreById = getGenreById;
+exports.getGenreByName = getGenreByName;
+exports.getGenresWithPagination = getGenresWithPagination;
+var database_js_1 = require("../database.js");
+function createGenreTable() {
     var sql = "\n    CREATE TABLE IF NOT EXISTS DeezerGenre (\n      id INTEGER PRIMARY KEY,\n      name TEXT NOT NULL,\n      picture TEXT,\n      picture_small TEXT,\n      picture_medium TEXT,\n      picture_big TEXT,\n      picture_xl TEXT,\n      type TEXT\n    );\n  ";
-    var db = getDatabase();
+    var db = (0, database_js_1.getDatabase)();
     db.prepare(sql).run();
 }
-export function insertGenre(_a) {
+function insertGenre(_a) {
     var genre = _a.genre;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "\n      INSERT OR REPLACE INTO DeezerGenre\n      (id, name, picture, picture_small, picture_medium, picture_big, picture_xl, type)\n      VALUES (?, ?, ?, ?, ?, ?, ?, ?);\n    ";
         db.run(sql, [
             genre.id,
@@ -26,9 +35,9 @@ export function insertGenre(_a) {
         });
     });
 }
-export function getAllGenre() {
+function getAllGenre() {
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerGenre;";
         db.all(sql, function (err, rows) {
             if (err) {
@@ -40,10 +49,10 @@ export function getAllGenre() {
         });
     });
 }
-export function updateGenreById(_a) {
+function updateGenreById(_a) {
     var genre = _a.genre;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "\n      UPDATE DeezerGenre\n      SET \n        name = ?,\n        picture = ?,\n        picture_small = ?,\n        picture_medium = ?,\n        picture_big = ?,\n        picture_xl = ?,\n        type = ?\n      WHERE id = ?;\n    ";
         db.run(sql, [
             genre.name,
@@ -64,10 +73,10 @@ export function updateGenreById(_a) {
         });
     });
 }
-export function getGenreById(_a) {
+function getGenreById(_a) {
     var id = _a.id;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerGenre WHERE id = ?;";
         db.get(sql, [id], function (err, row) {
             if (err) {
@@ -79,10 +88,10 @@ export function getGenreById(_a) {
         });
     });
 }
-export function getGenreByName(_a) {
+function getGenreByName(_a) {
     var name = _a.name;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerGenre WHERE name = ?;";
         db.get(sql, [name], function (err, row) {
             if (err) {
@@ -94,12 +103,12 @@ export function getGenreByName(_a) {
         });
     });
 }
-export function getGenresWithPagination(_a) {
+function getGenresWithPagination(_a) {
     var index = _a.index, limit = _a.limit, _b = _a.orderBy, orderBy = _b === void 0 ? "name" : _b, // default order by name
     _c = _a.orderDir, // default order by name
     orderDir = _c === void 0 ? "ASC" : _c;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var allowedColumns = ["id", "name", "type"];
         if (!allowedColumns.includes(orderBy))
             orderBy = "name";

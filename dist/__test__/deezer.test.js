@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,8 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { getAlbumById, getAlbumFuzzySearchByAlbumTitle, getArtistById, getArtistFuzzySearchByArtistName, getTrackById, getTrackFuzzySearchByTrackTitle, } from "../service/deezerService.js";
-import { executeServiceSafe } from "../utils/executeServiceSafe.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+var deezerService_js_1 = require("../service/deezerService.js");
+var executeServiceSafe_js_1 = require("../utils/executeServiceSafe.js");
 function testGetAlbumById() {
     return __awaiter(this, void 0, void 0, function () {
         var tempId, payload;
@@ -43,8 +45,8 @@ function testGetAlbumById() {
             switch (_a.label) {
                 case 0:
                     tempId = "23";
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getAlbumById,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: deezerService_js_1.getAlbumById,
                             args: [{ id: tempId }],
                         })];
                 case 1:
@@ -60,8 +62,8 @@ function testDeezerPaginatedAlbumResponse() {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAlbumFuzzySearchByAlbumTitle,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: deezerService_js_1.getAlbumFuzzySearchByAlbumTitle,
                         args: [{ albumName: "discovery", index: 10, limit: 2 }],
                     })];
                 case 1:
@@ -78,8 +80,8 @@ function tesgetArtistById() {
             switch (_a.label) {
                 case 0:
                     tempId = "27";
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getArtistById,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: deezerService_js_1.getArtistById,
                             args: [{ id: tempId }],
                         })];
                 case 1:
@@ -95,8 +97,8 @@ function testgetArtistFuzzySearchByArtistName() {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getArtistFuzzySearchByArtistName,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: deezerService_js_1.getArtistFuzzySearchByArtistName,
                         args: [{ artistName: "tom", index: 0, limit: 3 }],
                     })];
                 case 1:
@@ -114,8 +116,8 @@ function getTrackByIdTest() {
             switch (_a.label) {
                 case 0:
                     tempId = "3135556";
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getTrackById,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: deezerService_js_1.getTrackById,
                             args: [{ id: tempId }],
                         })];
                 case 1:
@@ -131,8 +133,8 @@ function getTrackFuzzySearchByTitleTest() {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getTrackFuzzySearchByTrackTitle,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: deezerService_js_1.getTrackFuzzySearchByTrackTitle,
                         args: [{ trackTitle: "believer", index: 0, limit: 5 }],
                     })];
                 case 1:

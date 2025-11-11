@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -13,7 +14,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { getTraceId } from "../utils/getTraceId.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ServiceError = void 0;
+var getTraceId_js_1 = require("../utils/getTraceId.js");
 var ServiceError = /** @class */ (function (_super) {
     __extends(ServiceError, _super);
     function ServiceError(message, options) {
@@ -22,7 +25,7 @@ var ServiceError = /** @class */ (function (_super) {
         var _a;
         var _this = _super.call(this, message) || this;
         _this.isOperational = (_a = options.isOperational) !== null && _a !== void 0 ? _a : true;
-        _this.traceId = getTraceId();
+        _this.traceId = (0, getTraceId_js_1.getTraceId)();
         _this.logMessage = options.logMessage || message;
         // maintain correct prototype chain
         Object.setPrototypeOf(_this, _newTarget.prototype);
@@ -34,5 +37,5 @@ var ServiceError = /** @class */ (function (_super) {
     }
     return ServiceError;
 }(Error));
-export { ServiceError };
+exports.ServiceError = ServiceError;
 //# sourceMappingURL=ServiceError.js.map

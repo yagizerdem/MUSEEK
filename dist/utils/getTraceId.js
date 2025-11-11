@@ -1,12 +1,16 @@
-import { v4 as uuidv4 } from "uuid";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getTraceId = getTraceId;
+exports.resetTraceId = resetTraceId;
+var uuid_1 = require("uuid");
 var traceId = null;
-export function getTraceId() {
+function getTraceId() {
     if (!traceId) {
-        traceId = uuidv4();
+        traceId = (0, uuid_1.v4)();
     }
     return traceId;
 }
-export function resetTraceId() {
+function resetTraceId() {
     traceId = null;
 }
 //# sourceMappingURL=getTraceId.js.map

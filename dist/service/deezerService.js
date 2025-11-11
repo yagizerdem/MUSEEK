@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,11 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { ServiceError } from "../errors/ServiceError.js";
-import { serviceResponseSuccess, } from "../model/serviceResponse/serviceResponse.js";
-import { logMessageWrapper } from "../utils/logMessageWrapper.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getAlbumById = getAlbumById;
+exports.getAlbumFuzzySearchByAlbumTitle = getAlbumFuzzySearchByAlbumTitle;
+exports.getArtistById = getArtistById;
+exports.getArtistFuzzySearchByArtistName = getArtistFuzzySearchByArtistName;
+exports.getTrackById = getTrackById;
+exports.getTrackFuzzySearchByTrackTitle = getTrackFuzzySearchByTrackTitle;
+var ServiceError_js_1 = require("../errors/ServiceError.js");
+var serviceResponse_js_1 = require("../model/serviceResponse/serviceResponse.js");
+var logMessageWrapper_js_1 = require("../utils/logMessageWrapper.js");
 var baseUrl = "https://api.deezer.com";
-export function getAlbumById(_a) {
+function getAlbumById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var fullUrl, response, data;
         var id = _b.id;
@@ -50,21 +58,21 @@ export function getAlbumById(_a) {
                 case 1:
                     response = _c.sent();
                     if (!response.ok) {
-                        throw new ServiceError("Failed to fetch album data from Deezer API", {
+                        throw new ServiceError_js_1.ServiceError("Failed to fetch album data from Deezer API", {
                             isOperational: false,
-                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching album ").concat(id, " from ").concat(fullUrl)),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching album ").concat(id, " from ").concat(fullUrl)),
                         });
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _c.sent();
                     if (data.error) {
-                        throw new ServiceError("Album not found", {
+                        throw new ServiceError_js_1.ServiceError("Album not found", {
                             isOperational: true,
-                            logMessage: logMessageWrapper("Deezer API error for album ".concat(id, ": ").concat(JSON.stringify(data.error))),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("Deezer API error for album ".concat(id, ": ").concat(JSON.stringify(data.error))),
                         });
                     }
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: data,
                             message: "Album fetched successfully",
                         })];
@@ -72,7 +80,7 @@ export function getAlbumById(_a) {
         });
     });
 }
-export function getAlbumFuzzySearchByAlbumTitle(_a) {
+function getAlbumFuzzySearchByAlbumTitle(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var params, fullUrl, response, data;
         var albumName = _b.albumName, index = _b.index, limit = _b.limit;
@@ -88,21 +96,21 @@ export function getAlbumFuzzySearchByAlbumTitle(_a) {
                 case 1:
                     response = _c.sent();
                     if (!response.ok) {
-                        throw new ServiceError("Failed to fetch album search results from Deezer API", {
+                        throw new ServiceError_js_1.ServiceError("Failed to fetch album search results from Deezer API", {
                             isOperational: false,
-                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching albums with name \"").concat(albumName, "\" from ").concat(fullUrl)),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching albums with name \"").concat(albumName, "\" from ").concat(fullUrl)),
                         });
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _c.sent();
                     if (data.error) {
-                        throw new ServiceError("Album not found", {
+                        throw new ServiceError_js_1.ServiceError("Album not found", {
                             isOperational: true,
-                            logMessage: logMessageWrapper("Deezer API error for album ".concat(albumName, ": ").concat(JSON.stringify(data.error))),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("Deezer API error for album ".concat(albumName, ": ").concat(JSON.stringify(data.error))),
                         });
                     }
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: data,
                             message: "Album search results fetched successfully",
                         })];
@@ -110,7 +118,7 @@ export function getAlbumFuzzySearchByAlbumTitle(_a) {
         });
     });
 }
-export function getArtistById(_a) {
+function getArtistById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var fullUrl, response, data;
         var id = _b.id;
@@ -122,21 +130,21 @@ export function getArtistById(_a) {
                 case 1:
                     response = _c.sent();
                     if (!response.ok) {
-                        throw new ServiceError("Failed to fetch artist data from Deezer API", {
+                        throw new ServiceError_js_1.ServiceError("Failed to fetch artist data from Deezer API", {
                             isOperational: false,
-                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching artist ").concat(id, " from ").concat(fullUrl)),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching artist ").concat(id, " from ").concat(fullUrl)),
                         });
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _c.sent();
                     if (data.error) {
-                        throw new ServiceError("Artist not found", {
+                        throw new ServiceError_js_1.ServiceError("Artist not found", {
                             isOperational: true,
-                            logMessage: logMessageWrapper("Deezer API error for artist ".concat(id, ": ").concat(JSON.stringify(data.error))),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("Deezer API error for artist ".concat(id, ": ").concat(JSON.stringify(data.error))),
                         });
                     }
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: data,
                             message: "Artist fetched successfully",
                         })];
@@ -144,7 +152,7 @@ export function getArtistById(_a) {
         });
     });
 }
-export function getArtistFuzzySearchByArtistName(_a) {
+function getArtistFuzzySearchByArtistName(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var params, fullUrl, response, data;
         var artistName = _b.artistName, index = _b.index, limit = _b.limit;
@@ -160,21 +168,21 @@ export function getArtistFuzzySearchByArtistName(_a) {
                 case 1:
                     response = _c.sent();
                     if (!response.ok) {
-                        throw new ServiceError("Failed to fetch artist search results from Deezer API", {
+                        throw new ServiceError_js_1.ServiceError("Failed to fetch artist search results from Deezer API", {
                             isOperational: false,
-                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching artists with name \"").concat(artistName, "\" from ").concat(fullUrl)),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching artists with name \"").concat(artistName, "\" from ").concat(fullUrl)),
                         });
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _c.sent();
                     if (data.error) {
-                        throw new ServiceError("Artist not found", {
+                        throw new ServiceError_js_1.ServiceError("Artist not found", {
                             isOperational: true,
-                            logMessage: logMessageWrapper("Deezer API error for artist ".concat(artistName, ": ").concat(JSON.stringify(data.error))),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("Deezer API error for artist ".concat(artistName, ": ").concat(JSON.stringify(data.error))),
                         });
                     }
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: data,
                             message: "Artist search results fetched successfully",
                         })];
@@ -182,7 +190,7 @@ export function getArtistFuzzySearchByArtistName(_a) {
         });
     });
 }
-export function getTrackById(_a) {
+function getTrackById(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var fullUrl, response, data;
         var id = _b.id;
@@ -194,21 +202,21 @@ export function getTrackById(_a) {
                 case 1:
                     response = _c.sent();
                     if (!response.ok) {
-                        throw new ServiceError("Failed to fetch track data from Deezer API", {
+                        throw new ServiceError_js_1.ServiceError("Failed to fetch track data from Deezer API", {
                             isOperational: false,
-                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching track ").concat(id, " from ").concat(fullUrl)),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("HTTP ".concat(response.status, " ").concat(response.statusText, " while fetching track ").concat(id, " from ").concat(fullUrl)),
                         });
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _c.sent();
                     if (data.error) {
-                        throw new ServiceError("Track not found", {
+                        throw new ServiceError_js_1.ServiceError("Track not found", {
                             isOperational: true,
-                            logMessage: logMessageWrapper("Deezer API error for track ".concat(id, ": ").concat(JSON.stringify(data.error))),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("Deezer API error for track ".concat(id, ": ").concat(JSON.stringify(data.error))),
                         });
                     }
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: data,
                             message: "Track fetched successfully",
                         })];
@@ -216,7 +224,7 @@ export function getTrackById(_a) {
         });
     });
 }
-export function getTrackFuzzySearchByTrackTitle(_a) {
+function getTrackFuzzySearchByTrackTitle(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var params, fullUrl, response, data;
         var trackTitle = _b.trackTitle, index = _b.index, limit = _b.limit;
@@ -232,21 +240,21 @@ export function getTrackFuzzySearchByTrackTitle(_a) {
                 case 1:
                     response = _c.sent();
                     if (!response.ok) {
-                        throw new ServiceError("Failed to fetch track search results from Deezer API", {
+                        throw new ServiceError_js_1.ServiceError("Failed to fetch track search results from Deezer API", {
                             isOperational: false,
-                            logMessage: logMessageWrapper("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching tracks with title \"").concat(trackTitle, "\" from ").concat(fullUrl)),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("HTTP ".concat(response.status, " ").concat(response.statusText, " while searching tracks with title \"").concat(trackTitle, "\" from ").concat(fullUrl)),
                         });
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _c.sent();
                     if (data.error) {
-                        throw new ServiceError("Track not found", {
+                        throw new ServiceError_js_1.ServiceError("Track not found", {
                             isOperational: true,
-                            logMessage: logMessageWrapper("Deezer API error for track ".concat(trackTitle, ": ").concat(JSON.stringify(data.error))),
+                            logMessage: (0, logMessageWrapper_js_1.logMessageWrapper)("Deezer API error for track ".concat(trackTitle, ": ").concat(JSON.stringify(data.error))),
                         });
                     }
-                    return [2 /*return*/, serviceResponseSuccess({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseSuccess)({
                             data: data,
                             message: "Track search results fetched successfully",
                         })];

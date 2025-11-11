@@ -1,7 +1,10 @@
-import { getTraceId } from "./getTraceId.js";
-export function logMessageWrapper(message) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.logMessageWrapper = logMessageWrapper;
+var getTraceId_js_1 = require("./getTraceId.js");
+function logMessageWrapper(message) {
     var timestamp = new Date().toISOString();
-    var traceId = getTraceId();
+    var traceId = (0, getTraceId_js_1.getTraceId)();
     var stack = new Error().stack;
     var caller = "unknown";
     if (stack) {

@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,9 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { ServiceError } from "../errors/ServiceError.js";
-import { serviceResponseFail, } from "../model/serviceResponse/serviceResponse.js";
-export function executeServiceSafe(_a) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.executeServiceSafe = executeServiceSafe;
+var ServiceError_js_1 = require("../errors/ServiceError.js");
+var serviceResponse_js_1 = require("../model/serviceResponse/serviceResponse.js");
+function executeServiceSafe(_a) {
     return __awaiter(this, arguments, void 0, function (_b) {
         var result, err_1;
         var fun = _b.fun, args = _b.args;
@@ -50,17 +53,17 @@ export function executeServiceSafe(_a) {
                     return [2 /*return*/, result];
                 case 2:
                     err_1 = _c.sent();
-                    if (err_1 instanceof ServiceError) {
+                    if (err_1 instanceof ServiceError_js_1.ServiceError) {
                         if (err_1.isOperational) {
-                            return [2 /*return*/, serviceResponseFail({
+                            return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseFail)({
                                     message: err_1.message || "An operational error occurred",
                                 })];
                         }
-                        return [2 /*return*/, serviceResponseFail({
+                        return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseFail)({
                                 message: "Unexpected error occurred",
                             })];
                     }
-                    return [2 /*return*/, serviceResponseFail({
+                    return [2 /*return*/, (0, serviceResponse_js_1.serviceResponseFail)({
                             message: "Unexpected error occurred",
                         })];
                 case 3: return [2 /*return*/];

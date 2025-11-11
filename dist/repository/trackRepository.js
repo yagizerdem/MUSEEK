@@ -1,14 +1,23 @@
-import { getDatabase } from "../database.js";
-export function createTrackTable() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createTrackTable = createTrackTable;
+exports.insertTrack = insertTrack;
+exports.getAllTrack = getAllTrack;
+exports.updateTrackById = updateTrackById;
+exports.getTrackById = getTrackById;
+exports.getTrackByTitle = getTrackByTitle;
+exports.getTracksWithPagination = getTracksWithPagination;
+var database_js_1 = require("../database.js");
+function createTrackTable() {
     var sql = "\nCREATE TABLE IF NOT EXISTS DeezerTrack (\n  id INTEGER PRIMARY KEY,\n  readable INTEGER,\n  title TEXT NOT NULL,\n  title_short TEXT,\n  title_version TEXT,\n  isrc TEXT,\n  link TEXT,\n  share TEXT,\n  duration INTEGER,\n  track_position INTEGER,\n  disk_number INTEGER,\n  rank INTEGER,\n  release_date TEXT,\n  explicit_lyrics INTEGER,\n  explicit_content_lyrics INTEGER,\n  explicit_content_cover INTEGER,\n  preview TEXT,\n  bpm REAL,\n  gain REAL,\n  available_countries TEXT,\n  md5_image TEXT,\n  track_token TEXT,\n  artist_id INTEGER,\n  album_id INTEGER,\n  type TEXT,\n  FOREIGN KEY (artist_id) REFERENCES DeezerArtist(id),\n  FOREIGN KEY (album_id) REFERENCES DeezerAlbum(id)\n);\n";
-    var db = getDatabase();
+    var db = (0, database_js_1.getDatabase)();
     db.prepare(sql).run();
 }
-export function insertTrack(_a) {
+function insertTrack(_a) {
     var track = _a.track;
     return new Promise(function (resolve, reject) {
         var _a, _b, _c, _d;
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "\n      INSERT OR REPLACE INTO DeezerTrack\n      (\n        id, readable, title, title_short, title_version, isrc,\n        link, share, duration, track_position, disk_number, rank,\n        release_date, explicit_lyrics, explicit_content_lyrics, explicit_content_cover,\n        preview, bpm, gain, available_countries, md5_image, track_token,\n        artist_id, album_id, type\n      )\n      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n    ";
         db.run(sql, [
             track.id,
@@ -39,9 +48,9 @@ export function insertTrack(_a) {
         ], function (err) { return (err ? reject(err) : resolve()); });
     });
 }
-export function getAllTrack() {
+function getAllTrack() {
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerTrack;";
         db.all(sql, function (err, rows) {
             if (err)
@@ -51,11 +60,11 @@ export function getAllTrack() {
         });
     });
 }
-export function updateTrackById(_a) {
+function updateTrackById(_a) {
     var track = _a.track;
     return new Promise(function (resolve, reject) {
         var _a, _b, _c, _d;
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "\n      UPDATE DeezerTrack\n      SET\n        readable = ?,\n        title = ?,\n        title_short = ?,\n        title_version = ?,\n        isrc = ?,\n        link = ?,\n        share = ?,\n        duration = ?,\n        track_position = ?,\n        disk_number = ?,\n        rank = ?,\n        release_date = ?,\n        explicit_lyrics = ?,\n        explicit_content_lyrics = ?,\n        explicit_content_cover = ?,\n        preview = ?,\n        bpm = ?,\n        gain = ?,\n        available_countries = ?,\n        md5_image = ?,\n        track_token = ?,\n        artist_id = ?,\n        album_id = ?,\n        type = ?\n      WHERE id = ?;\n    ";
         db.run(sql, [
             track.readable ? 1 : 0,
@@ -86,10 +95,10 @@ export function updateTrackById(_a) {
         ], function (err) { return (err ? reject(err) : resolve()); });
     });
 }
-export function getTrackById(_a) {
+function getTrackById(_a) {
     var id = _a.id;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "SELECT * FROM DeezerTrack WHERE id = ?;";
         db.get(sql, [id], function (err, row) {
             if (err)
@@ -99,10 +108,10 @@ export function getTrackById(_a) {
         });
     });
 }
-export function getTrackByTitle(_a) {
+function getTrackByTitle(_a) {
     var title = _a.title;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var sql = "\n      SELECT * FROM DeezerTrack\n      WHERE title LIKE ?;\n    ";
         db.all(sql, ["%".concat(title, "%")], function (err, rows) {
             if (err)
@@ -112,10 +121,10 @@ export function getTrackByTitle(_a) {
         });
     });
 }
-export function getTracksWithPagination(_a) {
+function getTracksWithPagination(_a) {
     var index = _a.index, limit = _a.limit, _b = _a.orderBy, orderBy = _b === void 0 ? "rank" : _b, _c = _a.orderDir, orderDir = _c === void 0 ? "DESC" : _c, filterField = _a.filterField, filterValue = _a.filterValue, _d = _a.matchMode, matchMode = _d === void 0 ? "substring" : _d;
     return new Promise(function (resolve, reject) {
-        var db = getDatabase();
+        var db = (0, database_js_1.getDatabase)();
         var allowedColumns = [
             "id",
             "title",

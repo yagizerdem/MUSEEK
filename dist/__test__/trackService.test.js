@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,8 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { insertTrack, getTrackById, getTrackByTitle, getAllTracks, getTracksWithPagination, } from "../service/trackService.js";
-import { executeServiceSafe } from "../utils/executeServiceSafe.js";
+Object.defineProperty(exports, "__esModule", { value: true });
+var trackService_js_1 = require("../service/trackService.js");
+var executeServiceSafe_js_1 = require("../utils/executeServiceSafe.js");
 // ----------- TESTS ------------
 function insertTrackTest() {
     return __awaiter(this, void 0, void 0, function () {
@@ -60,8 +62,8 @@ function insertTrackTest() {
                     if (!(_c in _a)) return [3 /*break*/, 3];
                     i = _c;
                     track = tracks[i];
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: insertTrack,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: trackService_js_1.insertTrack,
                             args: [{ track: track }],
                         })];
                 case 2:
@@ -84,8 +86,8 @@ function getTrackByIdTest() {
             switch (_a.label) {
                 case 0:
                     testId = 1010;
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getTrackById,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: trackService_js_1.getTrackById,
                             args: [{ id: testId }],
                         })];
                 case 1:
@@ -103,8 +105,8 @@ function getTrackByTitleTest() {
             switch (_a.label) {
                 case 0:
                     testTitle = "Dream Fire";
-                    return [4 /*yield*/, executeServiceSafe({
-                            fun: getTrackByTitle,
+                    return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                            fun: trackService_js_1.getTrackByTitle,
                             args: [{ title: testTitle }],
                         })];
                 case 1:
@@ -120,8 +122,8 @@ function getAllTracksTest() {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getAllTracks,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: trackService_js_1.getAllTracks,
                         args: [],
                     })];
                 case 1:
@@ -137,8 +139,8 @@ function getTracksWithPaginationTest() {
         var payload;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, executeServiceSafe({
-                        fun: getTracksWithPagination,
+                case 0: return [4 /*yield*/, (0, executeServiceSafe_js_1.executeServiceSafe)({
+                        fun: trackService_js_1.getTracksWithPagination,
                         args: [{ index: 0, limit: 5, orderBy: "rank", orderDir: "DESC" }],
                     })];
                 case 1:
